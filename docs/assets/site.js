@@ -1,0 +1,109 @@
+(function () {
+  var doc = document.documentElement;
+  var calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Menu
+  var entete = document.getElementById('entete');
+  var burger = entete.querySelector('.burger');
+  function surScroll() { entete.classList.toggle('plein', window.scrollY > 40); }
+  burger.addEventListener('click', function () {
+    var ouvert = entete.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert);
+    burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
+    burger.querySelector('use').setAttribute('href', ouvert ? '#i-croix' : '#i-menu');
+  });
+  entete.querySelectorAll('.nav a').forEach(function (a) {
+    a.addEventListener('click', function () { if (entete.classList.contains('ouvert')) burger.click(); });
+  });
+
+  // Barre de lecture et parallaxe
+  var barre = document.createElement('div'); barre.className = 'progression'; document.body.appendChild(barre);
+  var photo = document.querySelector('[data-parallaxe]');
+  function auDefilement() {
+    var y = window.scrollY, h = doc.scrollHeight - window.innerHeight;
+    surScroll();
+    barre.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+    if (!calme && photo && y < window.innerHeight * 1.2) photo.style.transform = 'translate3d(0,' + (y * 0.35) + 'px,0)';
+  }
+  var attente = false;
+  window.addEventListener('scroll', function () {
+    if (!attente) { attente = true; requestAnimationFrame(function () { auDefilement(); attente = false; }); }
+  }, { passive: true });
+  auDefilement();
+
+  // Apparition des blocs en cascade
+  var cibles = document.querySelectorAll('main .section .surtitre, main .section h2, main .section .chapo, .public, .canal, .tuile, .univers-liste li, .carte, .zones-liste li, .coord li, .formulaire, .livraison, .pied-section, .atouts li, .gamme, .etapes li, .faq, .fiche, .communes, .prose > *');
+  if ('IntersectionObserver' in window && !calme) {
+    var hauteur = window.innerHeight;
+    cibles = Array.prototype.filter.call(cibles, function (el) {
+      // ce qui est déjà à l'écran au chargement reste visible tout de suite
+      return el.getBoundingClientRect().top > hauteur * 0.9;
+    });
+    cibles.forEach(function (el) {
+      var i = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty('--d', (Math.min(i, 8) * 0.08) + 's');
+      el.classList.add('reveal');
+    });
+    var obs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    cibles.forEach(function (el) { obs.observe(el); });
+  }
+
+  // Chiffres qui défilent
+  var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+  if ('IntersectionObserver' in window && !calme) {
+    var obsC = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        obsC.unobserve(e.target);
+        var el = e.target, fin = +el.dataset.compte, suff = el.dataset.suffixe || '', t0 = null;
+        (function pas(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 1600, 1);
+          el.textContent = fmt(Math.round(fin * (1 - Math.pow(1 - p, 3)))) + suff;
+          if (p < 1) requestAnimationFrame(pas);
+        })(performance.now());
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-compte]').forEach(function (el) { obsC.observe(el); });
+  }
+
+  // Halo qui suit la souris
+  document.querySelectorAll('.public, .canal').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  var an = document.getElementById('annee'); if (an) an.textContent = new Date().getFullYear();
+
+  // Formulaire « Devenir client » : prépare un courriel, rien n'est stocké
+  var form = document.getElementById('formulaire');
+  if (form) {
+    var note = document.getElementById('f-note');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var manquants = [];
+      form.querySelectorAll('[required]').forEach(function (c) {
+        var vide = !c.value.trim();
+        c.setAttribute('aria-invalid', vide);
+        c.style.borderColor = vide ? '#a32239' : '';
+        if (vide) manquants.push(form.querySelector('label[for="' + c.id + '"]').textContent.toLowerCase());
+      });
+      if (manquants.length) {
+        note.textContent = 'Il manque : ' + manquants.join(', ') + '.';
+        form.querySelector('[aria-invalid="true"]').focus();
+        return;
+      }
+      var v = function (n) { return form.elements[n].value.trim(); };
+      var corps = ['Bonjour,', '', 'Je souhaite devenir client de LVA Distribution.', '',
+        'Nom : ' + v('nom'), 'Établissement : ' + v('etablissement'), 'Activité : ' + v('activite'),
+        'Commune : ' + (v('commune') || 'non précisée'), 'Téléphone : ' + v('telephone'), '', v('message'), '', 'Merci de me recontacter.'].join('\n');
+      window.location.href = 'mailto:lva@lva-distribution.fr?subject=' + encodeURIComponent('Demande d\'ouverture de compte : ' + v('etablissement')) + '&body=' + encodeURIComponent(corps);
+      note.textContent = 'Votre messagerie s\'ouvre avec la demande prête : il ne reste qu\'à l\'envoyer. Rien ne s\'ouvre ? Appelez le 05 65 10 00 20.';
+    });
+  }
+})();
