@@ -26,10 +26,16 @@
   // Barre de lecture et parallaxe
   var barre = document.createElement('div'); barre.className = 'progression'; document.body.appendChild(barre);
   var photo = document.querySelector('[data-parallaxe]');
+  var filmBloc = document.querySelector('.une-film');
   function auDefilement() {
     var y = window.scrollY, h = doc.scrollHeight - window.innerHeight;
     surScroll();
     barre.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+    // la vidéo s'assombrit puis s'efface pendant que le texte passe devant
+    if (filmBloc) {
+      var p = Math.min(1, Math.max(0, y / (filmBloc.offsetHeight * 0.9)));
+      filmBloc.style.setProperty('--p', p.toFixed(3));
+    }
     if (!calme && photo && window.innerWidth > 760 && y < window.innerHeight * 1.2) photo.style.transform = 'translate3d(0,' + (y * 0.35) + 'px,0)';
   }
   var attente = false;
