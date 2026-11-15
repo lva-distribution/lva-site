@@ -1,10 +1,11 @@
 # LVA Distribution
 
-> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine.
+> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine. Professionnels en priorité ; les particuliers peuvent aussi commander.
 
 ## Coordonnées
 - Adresse : Z.A. Les Vieilles Vignes, Le Causse, 46500 Rignac, France
-- Téléphone : 05 65 10 00 20
+- Téléphone : 05 65 10 00 20 (prise de commande du lundi au vendredi, de 8 h à 12 h et de 14 h à 17 h)
+- Courriel : lva@lva-distribution.fr
 - Boutique en ligne (clients) : https://boutique.lva-distribution.fr/
 - Application mobile : https://onelink.to/w3tu83
 - Catalogue 2026 : https://lva-catalogue.lva-distribution.workers.dev/
@@ -34,7 +35,7 @@ Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Bridor, Vandemoor
 Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'application iPhone et Android. Tarifs personnalisés, visibles après ouverture du compte. Ouverture de compte : https://www.lva-distribution.fr/contact/
 
 ## Questions fréquentes
-- **Qui peut commander chez LVA Distribution ?** Tout le monde : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries, charcuteries et épiceries, mais aussi les particuliers. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact.
+- **Qui peut commander chez LVA Distribution ?** Nous travaillons d'abord pour les professionnels : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries, charcuteries et épiceries. Les particuliers peuvent aussi commander : appelez-nous. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact.
 - **Dans quels secteurs livrez-vous ?** Nous livrons depuis notre entrepôt de Rignac, à côté de Gramat : le Lot et au-delà (Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Biars-sur-Cère, Souillac, Figeac, Cahors…), ainsi que Brive-la-Gaillarde et la Corrèze.
 - **Combien de fois par semaine livrez-vous ?** Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre secteur : nous consulter.
 - **Comment passer commande ?** Trois possibilités : par téléphone avec notre équipe de télévente, sur la boutique en ligne boutique.lva-distribution.fr (24h/24), ou sur l'application LVA Distribution (iPhone et Android). Vos tarifs personnalisés s'appliquent partout.
@@ -44,6 +45,7 @@ Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'applica
 - **Quels jours passez-vous ?** Nos tournées sont fixes et passent plusieurs fois par semaine. Les jours dépendent de votre secteur : nous consulter.
 - **Comment la chaîne du froid est-elle respectée ?** Nous livrons avec nos propres camions frigorifiques. Les produits frais et surgelés restent au froid de notre entrepôt de Rignac jusqu'à votre chambre froide.
 - **Puis-je être livré en saison seulement ?** Oui. Beaucoup de nos clients travaillent avec le tourisme (Rocamadour, Padirac, vallée de la Dordogne) et ne commandent qu'une partie de l'année. Nous adaptons les passages à votre activité.
+- **Quand peut-on commander par téléphone ?** La prise de commande répond au 05 65 10 00 20 du lundi au vendredi, de 8 h à 12 h et de 14 h à 17 h. En dehors de ces horaires, la boutique en ligne et l'application restent ouvertes 24h/24.
 - **Comment ouvrir un compte ?** Remplissez le formulaire de contact ou appelez le 05 65 10 00 20. Un commercial vous rappelle, vous présente nos tarifs et ouvre votre compte. Vous recevez ensuite vos accès à la boutique en ligne et à l'application.
 - **Les prix sont-ils affichés sur le site ?** Nos tarifs sont personnalisés. Ils s'affichent sur la boutique en ligne et dans l'application une fois votre compte ouvert.
 - **Puis-je commander le soir ou le week-end ?** Oui, la boutique en ligne et l'application sont accessibles 24h/24 et 7j/7. La commande part avec la prochaine tournée de votre secteur.
