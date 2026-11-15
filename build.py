@@ -829,6 +829,9 @@ Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'applica
 - [Contact]({DOMAINE}/contact/)
 """)
     open(os.path.join(SORTIE, ".nojekyll"), "w").close()
+    # domaine du site (GitHub Pages)
+    with open(os.path.join(SORTIE, "CNAME"), "w", encoding="utf-8", newline="\n") as f:
+        f.write("www.lva-distribution.fr\n")
 
 
 def ressources():
