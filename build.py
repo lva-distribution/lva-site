@@ -741,7 +741,7 @@ def mentions():
 <h2 class="titre">Données personnelles et cookies</h2>
 <p>Ce site ne dépose aucun cookie. Il mesure sa fréquentation de façon anonyme (pages vues, provenance, type d'appareil, clics sur le téléphone ou la boutique), sans cookie et sans conserver d'adresse IP : un visiteur n'est reconnu que le jour même, par une empreinte non réversible renouvelée chaque jour. Le formulaire « Devenir client » n'enregistre rien : il prépare un courriel dans votre propre messagerie. Les informations que vous nous envoyez servent uniquement à vous recontacter et à ouvrir votre compte client. Vous pouvez demander leur consultation, leur rectification ou leur suppression en nous écrivant.</p>
 <h2 class="titre">Marques et photographies</h2>
-<p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026. Vidéo d'accueil : extraits de la banque Mixkit, sous licence gratuite « Stock Video Free License ».</p>
+<p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026. Vidéo d'accueil : extraits des banques Pexels (licence Pexels) et Mixkit (« Stock Video Free License »), gratuites pour un usage commercial.</p>
 </div></section>
 """
     return page("mentions-legales/index.html", "Mentions légales · LVA Distribution", "Mentions légales du site de LVA Distribution, grossiste alimentaire à Rignac (Lot).", corps, r, schemas=[ariane_ld(chemin)])
