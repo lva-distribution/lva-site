@@ -308,7 +308,7 @@ def page(chemin_fichier, titre, description, corps, r, actif=None, schemas=(), a
     {a_mail(icone=True)}
   </div></div>
   <div class="cadre barre">
-    <a class="marque" href="{r or './'}" aria-label="LVA Distribution, accueil"><img src="{r}assets/img/logo-lva.png" alt="LVA Distribution, grossiste alimentaire" width="480" height="363"></a>
+    <a class="marque" href="{r or './'}" aria-label="LVA Distribution, accueil"><img src="{r}assets/img/logo-lva-entete.png" alt="LVA Distribution, grossiste alimentaire" width="450" height="329"></a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><svg class="ic"><use href="#i-menu"/></svg></button>
     <nav class="nav" id="nav" aria-label="Menu principal">
       {nav}
@@ -818,7 +818,7 @@ def ressources():
     shutil.copy(os.path.join(ICI, "src", "site.js"), os.path.join(a, "site.js"))
     for f in os.listdir(os.path.join(ICI, "fonts")):
         shutil.copy(os.path.join(ICI, "fonts", f), os.path.join(a, "fonts", f))
-    for f in ("logo-lva.png", "hero-farine.webp", "viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp", "partage.jpg", "favicon-32.png", "apple-touch-icon.png"):
+    for f in ("logo-lva.png", "logo-lva-entete.png", "hero-farine.webp", "viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp", "partage.jpg", "favicon-32.png", "apple-touch-icon.png"):
         shutil.copy(os.path.join(ICI, "img", f), os.path.join(a, "img", f))
     os.makedirs(os.path.join(a, "video"), exist_ok=True)
     for f in os.listdir(os.path.join(ICI, "video")):
