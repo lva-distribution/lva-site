@@ -104,11 +104,11 @@ PHOTOS_RACINE = {"viandes.webp", "fromages.webp", "charcuteries.webp", "boulange
 GAMMES = [  # (titre, image, texte, sous-familles)
     ("Viandes et volailles", "viandes.webp", "Bœuf, veau, agneau, porc et volailles, en pièces, portions ou prêts à cuisiner, frais ou surgelés. Les steaks hachés façon bouchère et les volailles font partie de nos meilleures ventes.", ["Bœuf", "Veau", "Agneau", "Porc", "Poulet", "Dinde", "Volailles découpées"]),
     ("Canard", "bandeau-droite.webp", "Le canard est notre premier rayon : confits, magrets, cuisses, manchons et gésiers, dont la gamme Rougié. Un incontournable des cartes du Lot et du Périgord.", ["Confits", "Magrets", "Cuisses", "Manchons", "Gésiers"]),
-    ("Crèmerie et laits", None, "Beurres de cuisine, beurres pâtissiers AOP et de tourage, beurres en portions, crèmes UHT et crèmes fraîches, laits et œufs (coquille, liquides).", ["Beurres de cuisine", "Beurres pâtissiers", "Beurres portions", "Crèmes", "Laits", "Œufs"]),
+    ("Crèmerie et laits", "cremerie.webp", "Beurres de cuisine, beurres pâtissiers AOP et de tourage, beurres en portions, crèmes UHT et crèmes fraîches, laits et œufs (coquille, liquides).", ["Beurres de cuisine", "Beurres pâtissiers", "Beurres portions", "Crèmes", "Laits", "Œufs"]),
     ("Fromages", "fromages.webp", "Fromages à la coupe, en portions, râpés et tranchés, dont le Rocamadour AOP et les grands classiques pour la cuisine, le plateau et la pizza.", ["À la coupe", "Portions", "Râpés", "Tranchés", "Rocamadour AOP"]),
     ("Charcuteries", "charcuteries.webp", "Jambons, lards, saucissons et spécialités, tranchés ou à la coupe, pour la cuisine, le snacking et les planches.", ["Charcuterie tranchée", "Charcuterie à la coupe", "Saucisses"]),
     ("Boulangerie et viennoiserie", "boulangerie.webp", "Pains précuits, viennoiseries crues ou cuites, pâtes feuilletées et prêts à garnir, avec des marques comme Bridor et Vandemoortele.", ["Pains", "Viennoiseries", "Pâtes feuilletées", "Prêts à garnir"]),
-    ("Ingrédients boulangerie-pâtisserie", None, "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs"]),
+    ("Ingrédients boulangerie-pâtisserie", "ingredients-boulangerie.webp", "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs"]),
     ("Plats cuisinés", "plats.webp", "Plats prêts à réchauffer et spécialités pour gagner du temps en service, en cantine comme en restauration rapide.", ["Plats du terroir", "Plats à partager"]),
     ("Légumes et accompagnements", "accompagnements.webp", "Légumes et herbes, champignons, féculents, sauces et préparations, en conserve, surgelés ou prêts à l'emploi.", ["Légumes et herbes", "Champignons", "Féculents", "Sauces"]),
     ("Desserts et glaces", "desserts.webp", "Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.", ["Yaourts", "Fromages blancs", "Compotes", "Glaces"]),
@@ -537,7 +537,8 @@ def produits():
             dossier = "" if img in PHOTOS_RACINE else "univers/"
             cadrage = {"bandeau-droite.webp": "50% 80%", "viandes.webp": "50% 35%", "fromages.webp": "50% 55%",
                        "charcuteries.webp": "50% 60%", "desserts.webp": "50% 62%", "emballages.webp": "0% 50%",
-                       "huiles.webp": "72% 50%", "boissons.webp": "62% 50%"}.get(img)
+                       "huiles.webp": "72% 50%", "boissons.webp": "62% 50%",
+                       "cremerie.webp": "50% 55%", "ingredients-boulangerie.webp": "58% 50%"}.get(img)
             pos = f' style="object-position:{cadrage}"' if cadrage else ""
             vis = f'<div class="visuel"><img src="{r}assets/img/{dossier}{img}" alt="{e(titre)} chez LVA Distribution" loading="lazy"{dimensions(dossier + img)}{pos}></div>'
         puces = "".join(f"<li>{e(s)}</li>" for s in subs)
