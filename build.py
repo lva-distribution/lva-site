@@ -58,7 +58,7 @@ def _version():
     h = hashlib.sha1()
     for f in ("src/site.css", "src/site.js"):
         with open(os.path.join(ICI, f), "rb") as fh:
-            h.update(fh.read())
+            h.update(fh.read().replace(b"\r\n", b"\n"))  # même empreinte quelles que soient les fins de ligne
     return h.hexdigest()[:8]
 
 
