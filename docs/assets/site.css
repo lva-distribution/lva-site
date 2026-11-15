@@ -117,7 +117,15 @@ svg.ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: ro
   background: radial-gradient(70% 60% at 50% 100%, rgba(163,34,57,.28), transparent 70%), linear-gradient(180deg, rgba(14,14,14,.55) 0%, rgba(14,14,14,.25) 35%, rgba(14,14,14,.75) 72%, var(--noir) 100%); }
 .une-video .une-texte { margin-top: 0; padding-top: 180px; }
 .js .une-film video { animation: recul 2.4s cubic-bezier(.2,.75,.15,1) both; }
-@media (max-width: 600px) { .une-video { min-height: 88svh; } .une-video .une-texte { margin-top: 0; padding-top: 150px; } }
+/* Sur téléphone : la vidéo entière en 16:9 sous l'en-tête, le texte en dessous */
+@media (max-width: 760px) {
+  .une-video { display: block; min-height: 0; padding-top: 116px; }
+  .une-video::before { display: none; }
+  .une-film { position: relative; inset: auto; z-index: 0; aspect-ratio: 16 / 9; width: 100%;
+    -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent); mask-image: linear-gradient(180deg, #000 72%, transparent); }
+  .une-video .une-texte { position: relative; margin-top: -18px; padding-top: 0;
+    background: radial-gradient(90% 60% at 50% 100%, rgba(163,34,57,.22), transparent 70%); }
+}
 
 /* Haut des pages intérieures */
 .tete-page { position: relative; padding: calc(116px + clamp(48px, 7vw, 96px)) 0 clamp(48px, 6vw, 80px); background: radial-gradient(80% 120% at 85% 0%, rgba(163,34,57,.28), transparent 60%), var(--noir); border-bottom: 1px solid var(--trait); overflow: hidden; }
