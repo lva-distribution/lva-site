@@ -535,7 +535,10 @@ def produits():
         vis = ""
         if img:
             dossier = "" if img in PHOTOS_RACINE else "univers/"
-            pos = ' style="object-position:50% 78%"' if img == "bandeau-droite.webp" else ""
+            cadrage = {"bandeau-droite.webp": "50% 80%", "viandes.webp": "50% 35%", "fromages.webp": "50% 55%",
+                       "charcuteries.webp": "50% 60%", "desserts.webp": "50% 62%", "emballages.webp": "0% 50%",
+                       "huiles.webp": "72% 50%", "boissons.webp": "62% 50%"}.get(img)
+            pos = f' style="object-position:{cadrage}"' if cadrage else ""
             vis = f'<div class="visuel"><img src="{r}assets/img/{dossier}{img}" alt="{e(titre)} chez LVA Distribution" loading="lazy"{dimensions(dossier + img)}{pos}></div>'
         puces = "".join(f"<li>{e(s)}</li>" for s in subs)
         cartes.append(f'<article class="gamme">{vis}<div class="corps"><h2>{e(titre)}</h2><p>{e(texte)}</p><ul>{puces}</ul></div></article>')
