@@ -388,3 +388,33 @@ svg.ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: ro
 .js .defile-piste, .js .marques-piste { animation: none; }
 .js .defile.saisi, .js .marques-fenetre.saisi { cursor: grabbing; }
 .defile *, .marques-fenetre * { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+
+/* Page /stats/ (fréquentation, réservée à LVA) */
+.stats-acces { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-top: 28px; }
+.stats-acces .champ { min-width: 180px; }
+.stats-acces .btn { min-height: 46px; }
+.stats-etat { margin-top: 12px; color: var(--doux); font-size: 14px; }
+.stats-option { display: flex; gap: 10px; align-items: center; margin-top: 18px; font-size: 14px; color: var(--doux); }
+.stats-tuiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 36px; }
+.stats-tuile { background: var(--carte); border: 1px solid var(--trait); border-radius: var(--rayon); padding: 18px; }
+.stats-tuile b { display: block; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 38px; line-height: 1.05; color: var(--blanc); font-variant-numeric: tabular-nums; }
+.stats-tuile span { display: block; font-size: 13.5px; font-weight: 600; color: #d6d1c8; margin-top: 4px; }
+.stats-tuile small { display: block; font-size: 12px; color: var(--doux); margin-top: 4px; line-height: 1.4; }
+.stats-bloc { background: var(--carte); border: 1px solid var(--trait); border-radius: var(--rayon); padding: 20px 22px; margin-top: 16px; position: relative; }
+.stats-bloc h2 { font: 700 15px Montserrat, sans-serif; color: var(--blanc); margin: 0 0 14px; }
+.stats-graphe { display: flex; align-items: flex-end; gap: 2px; height: 180px; border-bottom: 1px solid #3a3a3a; }
+.stats-barre { flex: 1; height: 100%; display: flex; align-items: flex-end; cursor: default; outline: none; }
+.stats-barre span { display: block; width: 100%; min-height: 2px; background: var(--rouge-texte); border-radius: 4px 4px 0 0; }
+.stats-barre:hover span, .stats-barre:focus span { background: #e05a70; }
+.stats-axe { display: flex; justify-content: space-between; font-size: 12px; color: var(--doux); margin-top: 6px; }
+.stats-bulle { position: absolute; top: 46px; width: 220px; background: #000; border: 1px solid #3a3a3a; border-radius: 8px; padding: 8px 10px; font-size: 13px; color: var(--blanc); pointer-events: none; }
+.stats-details { margin-top: 14px; font-size: 14px; }
+.stats-details summary { cursor: pointer; color: #d6d1c8; }
+.stats-grille { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.stats-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.stats-table th { text-align: left; color: var(--doux); font-weight: 600; padding: 6px 0; border-bottom: 1px solid var(--trait); }
+.stats-table th:last-child, .stats-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.stats-table td { padding: 7px 0; border-bottom: 1px solid #222; color: #e6e1d8; position: relative; }
+.stats-jauge { position: absolute; left: 0; bottom: 0; height: 2px; width: var(--l); background: var(--rouge-texte); opacity: .7; }
+.stats-vide { color: var(--doux); font-size: 14px; }
+@media (max-width: 860px) { .stats-tuiles { grid-template-columns: 1fr 1fr; } .stats-grille { grid-template-columns: 1fr; } }

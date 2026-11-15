@@ -180,8 +180,43 @@
       var corps = ['Bonjour,', '', 'Je souhaite devenir client de LVA Distribution.', '',
         'Nom : ' + v('nom'), 'Établissement : ' + v('etablissement'), 'Activité : ' + v('activite'),
         'Ville : ' + (v('commune') || 'non précisée'), 'Téléphone : ' + v('telephone'), '', v('message'), '', 'Merci de me recontacter.'].join('\n');
+      if (window.lvaMesure) window.lvaMesure('formulaire');
       window.location.href = 'mailto:lva@lva-distribution.fr?subject=' + encodeURIComponent('Demande d\'ouverture de compte : ' + v('etablissement')) + '&body=' + encodeURIComponent(corps);
       note.textContent = 'Votre messagerie s\'ouvre avec la demande prête : il ne reste qu\'à l\'envoyer. Rien ne s\'ouvre ? Appelez le 05 65 10 00 20.';
     });
   }
+
+  // Mesure de fréquentation : sans cookie, sans adresse IP conservée (voir mentions légales)
+  (function () {
+    var API = 'https://axnysfiklmtfpterawgm.supabase.co/rest/v1/rpc/site_visite';
+    var CLE = 'sb_publishable_xhAnr45DL5VdMaDotuelcQ_WM6-QxMC';
+    var off = false; try { off = localStorage.getItem('lva-stats-off') === '1'; } catch (e) {}
+    var h = location.hostname;
+    if (off || location.protocol === 'file:' || h === 'localhost' || h === '127.0.0.1' || navigator.webdriver) return;
+    var page = location.pathname.replace(/^\/lva-site/, '') || '/';
+    if (page.indexOf('/stats/') === 0) return;
+    var w = window.innerWidth, tactile = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+    var appareil = w <= 760 ? 'mobile' : (tactile && w <= 1180 ? 'tablette' : 'ordinateur');
+    var source = 'direct';
+    try {
+      var q = new URLSearchParams(location.search);
+      if (q.get('utm_source')) source = q.get('utm_source');
+      else if (document.referrer) { var r = new URL(document.referrer).hostname.replace(/^www\./, ''); if (r && r !== h.replace(/^www\./, '')) source = r; }
+    } catch (e) {}
+    function envoyer(evenement) {
+      try {
+        fetch(API, { method: 'POST', keepalive: true, headers: { 'apikey': CLE, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ p_page: page, p_source: source, p_appareil: appareil, p_evenement: evenement }) }).catch(function () {});
+      } catch (e) {}
+    }
+    envoyer('vue');
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+      var u = a.getAttribute('href');
+      var t = /^tel:/.test(u) ? 'tel' : /^mailto:/.test(u) ? 'mail' : /boutique\.lva-distribution/.test(u) ? 'boutique'
+        : /onelink\.to|apps\.apple\.com|play\.google\.com/.test(u) ? 'appli' : /lva-catalogue/.test(u) ? 'catalogue' : null;
+      if (t) envoyer(t);
+    });
+    window.lvaMesure = envoyer;
+  })();
 })();
