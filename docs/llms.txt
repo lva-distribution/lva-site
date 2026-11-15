@@ -1,16 +1,16 @@
 # LVA Distribution
 
-> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine. Vente aux professionnels uniquement.
+> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine.
 
 ## Coordonnées
 - Adresse : Z.A. Les Vieilles Vignes, Le Causse, 46500 Rignac, France
 - Téléphone : 05 65 10 00 20
-- Boutique en ligne (clients professionnels) : https://boutique.lva-distribution.fr/
+- Boutique en ligne (clients) : https://boutique.lva-distribution.fr/
 - Application mobile : https://onelink.to/w3tu83
 - Catalogue 2026 : https://lva-catalogue.lva-distribution.workers.dev/
 
 ## Zone de livraison
-Rocamadour, Gramat, Padirac, Alvignac, Lacave, Martel, Saint-Céré, Bretenoux, Biars-sur-Cère, Souillac, Figeac, Cahors, Brive-la-Gaillarde ; Lot et Corrèze ; communes en limite de Dordogne et d'Aveyron au cas par cas. Jours de passage selon la commune : nous consulter.
+Rocamadour, Gramat, Padirac, Alvignac, Lacave, Martel, Saint-Céré, Bretenoux, Biars-sur-Cère, Souillac, Figeac, Cahors, Brive-la-Gaillarde ; le Lot et au-delà, Brive et la Corrèze. Jours de passage selon le secteur : nous consulter.
 
 ## Gammes
 - **Viandes et volailles** : Bœuf, veau, agneau, porc et volailles, en pièces, portions ou prêts à cuisiner, frais ou surgelés. Les steaks hachés façon bouchère et les volailles font partie de nos meilleures ventes.
@@ -19,10 +19,9 @@ Rocamadour, Gramat, Padirac, Alvignac, Lacave, Martel, Saint-Céré, Bretenoux, 
 - **Fromages** : Fromages à la coupe, en portions, râpés et tranchés, dont le Rocamadour AOP et les grands classiques pour la cuisine, le plateau et la pizza.
 - **Charcuteries** : Jambons, lards, saucissons et spécialités, tranchés ou à la coupe, pour la cuisine, le snacking et les planches.
 - **Boulangerie et viennoiserie** : Pains précuits, viennoiseries crues ou cuites, pâtes feuilletées et prêts à garnir, avec des marques comme Bridor et Vandemoortele.
-- **Ingrédients boulangerie-pâtisserie** : Farines, sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.
+- **Ingrédients boulangerie-pâtisserie** : Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.
 - **Plats cuisinés** : Plats prêts à réchauffer et spécialités pour gagner du temps en service, en cantine comme en restauration rapide.
 - **Légumes et accompagnements** : Légumes et herbes, champignons, féculents, sauces et préparations, en conserve, surgelés ou prêts à l'emploi.
-- **Produits de la mer** : Poissons, crustacés et coquillages surgelés pour la restauration traditionnelle et collective.
 - **Desserts et glaces** : Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.
 - **Boissons** : Jus de fruits (bouteilles et BIB), eaux, cafés, jus pour cocktails, vins et bières pour les bars, hôtels et restaurants.
 - **Épicerie, huiles et confitures** : Huiles, vinaigres, confitures, miels, pâtes à tartiner, gâteaux et confiseries : toute l'épicerie salée et sucrée.
@@ -32,21 +31,21 @@ Rocamadour, Gramat, Padirac, Alvignac, Lacave, Martel, Saint-Céré, Bretenoux, 
 Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Bridor, Vandemoortele, Debic, Callebaut, Andros, Jean Floc'h, ainsi que des produits régionaux comme le Rocamadour AOP.
 
 ## Commander
-Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'application iPhone et Android. Tarifs professionnels personnalisés, visibles après ouverture du compte. Ouverture de compte : https://www.lva-distribution.fr/contact/
+Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'application iPhone et Android. Tarifs personnalisés, visibles après ouverture du compte. Ouverture de compte : https://www.lva-distribution.fr/contact/
 
 ## Questions fréquentes
-- **Qui peut commander chez LVA Distribution ?** LVA Distribution vend uniquement aux professionnels : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries et épiceries. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact.
-- **Dans quelles communes livrez-vous ?** Nous livrons depuis notre entrepôt de Rignac, à côté de Gramat : tout le nord du Lot (Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Biars-sur-Cère, Souillac…), Figeac et Cahors, ainsi que Brive-la-Gaillarde et la Corrèze. Les communes en limite de Dordogne et d'Aveyron sont étudiées au cas par cas.
-- **Combien de fois par semaine livrez-vous ?** Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre commune : nous consulter.
+- **Qui peut commander chez LVA Distribution ?** Tout le monde : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries, charcuteries et épiceries, mais aussi les particuliers. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact.
+- **Dans quels secteurs livrez-vous ?** Nous livrons depuis notre entrepôt de Rignac, à côté de Gramat : le Lot et au-delà (Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Biars-sur-Cère, Souillac, Figeac, Cahors…), ainsi que Brive-la-Gaillarde et la Corrèze.
+- **Combien de fois par semaine livrez-vous ?** Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre secteur : nous consulter.
 - **Comment passer commande ?** Trois possibilités : par téléphone avec notre équipe de télévente, sur la boutique en ligne boutique.lva-distribution.fr (24h/24), ou sur l'application LVA Distribution (iPhone et Android). Vos tarifs personnalisés s'appliquent partout.
 - **Quels produits proposez-vous ?** Plus de 4 000 références : viandes et volailles, canard, crèmerie, fromages, charcuterie, boulangerie et viennoiserie, surgelés, épicerie, boissons, emballages et produits d'hygiène.
 - **Quelles marques distribuez-vous ?** Nous travaillons notamment avec Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Debic, Bridor, Vandemoortele, Callebaut, Andros et Jean Floc'h, ainsi qu'avec des producteurs régionaux comme le Rocamadour AOP.
-- **Livrez-vous chez moi ?** Si votre établissement se trouve dans le Lot, à Brive ou en Corrèze, très probablement. Pour les communes en limite de Dordogne et d'Aveyron, appelez-nous au 05 65 10 00 20 : nous regardons ensemble la tournée la plus proche.
-- **Quels jours passez-vous ?** Nos tournées sont fixes et passent plusieurs fois par semaine. Les jours dépendent de votre secteur : nous consulter pour connaître ceux de votre commune.
+- **Livrez-vous chez moi ?** Si vous êtes dans le Lot, à Brive ou en Corrèze, très probablement. Sinon, appelez-nous au 05 65 10 00 20 : nous regardons ensemble la tournée la plus proche.
+- **Quels jours passez-vous ?** Nos tournées sont fixes et passent plusieurs fois par semaine. Les jours dépendent de votre secteur : nous consulter.
 - **Comment la chaîne du froid est-elle respectée ?** Nous livrons avec nos propres camions frigorifiques. Les produits frais et surgelés restent au froid de notre entrepôt de Rignac jusqu'à votre chambre froide.
 - **Puis-je être livré en saison seulement ?** Oui. Beaucoup de nos clients travaillent avec le tourisme (Rocamadour, Padirac, vallée de la Dordogne) et ne commandent qu'une partie de l'année. Nous adaptons les passages à votre activité.
 - **Comment ouvrir un compte ?** Remplissez le formulaire de contact ou appelez le 05 65 10 00 20. Un commercial vous rappelle, vous présente nos tarifs et ouvre votre compte. Vous recevez ensuite vos accès à la boutique en ligne et à l'application.
-- **Les prix sont-ils affichés sur le site ?** Nos tarifs sont des tarifs professionnels personnalisés. Ils s'affichent sur la boutique en ligne et dans l'application une fois votre compte ouvert.
+- **Les prix sont-ils affichés sur le site ?** Nos tarifs sont personnalisés. Ils s'affichent sur la boutique en ligne et dans l'application une fois votre compte ouvert.
 - **Puis-je commander le soir ou le week-end ?** Oui, la boutique en ligne et l'application sont accessibles 24h/24 et 7j/7. La commande part avec la prochaine tournée de votre secteur.
 - **Puis-je garder un interlocuteur au téléphone ?** Oui. Notre équipe de télévente vous appelle au jour convenu pour prendre votre commande et vous signaler les promotions et les nouveautés.
 

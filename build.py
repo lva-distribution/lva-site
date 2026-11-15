@@ -85,10 +85,9 @@ GAMMES = [  # (titre, image, texte, sous-familles)
     ("Fromages", "fromages.webp", "Fromages à la coupe, en portions, râpés et tranchés, dont le Rocamadour AOP et les grands classiques pour la cuisine, le plateau et la pizza.", ["À la coupe", "Portions", "Râpés", "Tranchés", "Rocamadour AOP"]),
     ("Charcuteries", "charcuteries.webp", "Jambons, lards, saucissons et spécialités, tranchés ou à la coupe, pour la cuisine, le snacking et les planches.", ["Charcuterie tranchée", "Charcuterie à la coupe", "Saucisses"]),
     ("Boulangerie et viennoiserie", "boulangerie.webp", "Pains précuits, viennoiseries crues ou cuites, pâtes feuilletées et prêts à garnir, avec des marques comme Bridor et Vandemoortele.", ["Pains", "Viennoiseries", "Pâtes feuilletées", "Prêts à garnir"]),
-    ("Ingrédients boulangerie-pâtisserie", "ingredients.webp", "Farines, sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.", ["Farines", "Sucres et sels", "Épices", "Chocolat", "Fruits secs"]),
+    ("Ingrédients boulangerie-pâtisserie", None, "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs"]),
     ("Plats cuisinés", "plats.webp", "Plats prêts à réchauffer et spécialités pour gagner du temps en service, en cantine comme en restauration rapide.", ["Plats du terroir", "Plats à partager"]),
     ("Légumes et accompagnements", "accompagnements.webp", "Légumes et herbes, champignons, féculents, sauces et préparations, en conserve, surgelés ou prêts à l'emploi.", ["Légumes et herbes", "Champignons", "Féculents", "Sauces"]),
-    ("Produits de la mer", "mer.webp", "Poissons, crustacés et coquillages surgelés pour la restauration traditionnelle et collective.", ["Poissons", "Coquillages", "Crustacés"]),
     ("Desserts et glaces", "desserts.webp", "Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.", ["Yaourts", "Fromages blancs", "Compotes", "Glaces"]),
     ("Boissons", "boissons.webp", "Jus de fruits (bouteilles et BIB), eaux, cafés, jus pour cocktails, vins et bières pour les bars, hôtels et restaurants.", ["Jus de fruits", "Eaux", "Café", "Vins", "Bières"]),
     ("Épicerie, huiles et confitures", "huiles.webp", "Huiles, vinaigres, confitures, miels, pâtes à tartiner, gâteaux et confiseries : toute l'épicerie salée et sucrée.", ["Huiles", "Vinaigres", "Confitures", "Miels", "Confiseries"]),
@@ -96,22 +95,22 @@ GAMMES = [  # (titre, image, texte, sous-familles)
 ]
 
 FAQ_ACCUEIL = [
-    ("Qui peut commander chez LVA Distribution ?", "LVA Distribution vend uniquement aux professionnels : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries et épiceries. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact."),
-    ("Dans quelles communes livrez-vous ?", "Nous livrons depuis notre entrepôt de Rignac, à côté de Gramat : tout le nord du Lot (Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Biars-sur-Cère, Souillac…), Figeac et Cahors, ainsi que Brive-la-Gaillarde et la Corrèze. Les communes en limite de Dordogne et d'Aveyron sont étudiées au cas par cas."),
-    ("Combien de fois par semaine livrez-vous ?", "Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre commune : nous consulter."),
+    ("Qui peut commander chez LVA Distribution ?", "Tout le monde : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries, charcuteries et épiceries, mais aussi les particuliers. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact."),
+    ("Dans quels secteurs livrez-vous ?", "Nous livrons depuis notre entrepôt de Rignac, à côté de Gramat : le Lot et au-delà (Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Biars-sur-Cère, Souillac, Figeac, Cahors…), ainsi que Brive-la-Gaillarde et la Corrèze."),
+    ("Combien de fois par semaine livrez-vous ?", "Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre secteur : nous consulter."),
     ("Comment passer commande ?", "Trois possibilités : par téléphone avec notre équipe de télévente, sur la boutique en ligne boutique.lva-distribution.fr (24h/24), ou sur l'application LVA Distribution (iPhone et Android). Vos tarifs personnalisés s'appliquent partout."),
     ("Quels produits proposez-vous ?", "Plus de 4 000 références : viandes et volailles, canard, crèmerie, fromages, charcuterie, boulangerie et viennoiserie, surgelés, épicerie, boissons, emballages et produits d'hygiène."),
     ("Quelles marques distribuez-vous ?", "Nous travaillons notamment avec Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Debic, Bridor, Vandemoortele, Callebaut, Andros et Jean Floc'h, ainsi qu'avec des producteurs régionaux comme le Rocamadour AOP."),
 ]
 FAQ_LIVRAISON = [
-    ("Livrez-vous chez moi ?", "Si votre établissement se trouve dans le Lot, à Brive ou en Corrèze, très probablement. Pour les communes en limite de Dordogne et d'Aveyron, appelez-nous au 05 65 10 00 20 : nous regardons ensemble la tournée la plus proche."),
-    ("Quels jours passez-vous ?", "Nos tournées sont fixes et passent plusieurs fois par semaine. Les jours dépendent de votre secteur : nous consulter pour connaître ceux de votre commune."),
+    ("Livrez-vous chez moi ?", "Si vous êtes dans le Lot, à Brive ou en Corrèze, très probablement. Sinon, appelez-nous au 05 65 10 00 20 : nous regardons ensemble la tournée la plus proche."),
+    ("Quels jours passez-vous ?", "Nos tournées sont fixes et passent plusieurs fois par semaine. Les jours dépendent de votre secteur : nous consulter."),
     ("Comment la chaîne du froid est-elle respectée ?", "Nous livrons avec nos propres camions frigorifiques. Les produits frais et surgelés restent au froid de notre entrepôt de Rignac jusqu'à votre chambre froide."),
     ("Puis-je être livré en saison seulement ?", "Oui. Beaucoup de nos clients travaillent avec le tourisme (Rocamadour, Padirac, vallée de la Dordogne) et ne commandent qu'une partie de l'année. Nous adaptons les passages à votre activité."),
 ]
 FAQ_COMMANDE = [
     ("Comment ouvrir un compte ?", "Remplissez le formulaire de contact ou appelez le 05 65 10 00 20. Un commercial vous rappelle, vous présente nos tarifs et ouvre votre compte. Vous recevez ensuite vos accès à la boutique en ligne et à l'application."),
-    ("Les prix sont-ils affichés sur le site ?", "Nos tarifs sont des tarifs professionnels personnalisés. Ils s'affichent sur la boutique en ligne et dans l'application une fois votre compte ouvert."),
+    ("Les prix sont-ils affichés sur le site ?", "Nos tarifs sont personnalisés. Ils s'affichent sur la boutique en ligne et dans l'application une fois votre compte ouvert."),
     ("Puis-je commander le soir ou le week-end ?", "Oui, la boutique en ligne et l'application sont accessibles 24h/24 et 7j/7. La commande part avec la prochaine tournée de votre secteur."),
     ("Puis-je garder un interlocuteur au téléphone ?", "Oui. Notre équipe de télévente vous appelle au jour convenu pour prendre votre commande et vous signaler les promotions et les nouveautés."),
 ]
@@ -306,7 +305,7 @@ def carte():
     pts = "".join(f'<circle cx="{cx}" cy="{cy}" r="5"/><text x="{tx}" y="{ty}" text-anchor="{a}">{e(n)}</text>' for n, cx, cy, tx, ty, a in villes)
     return f"""<figure class="carte">
   <svg viewBox="0 0 500 500" role="img" aria-labelledby="carte-titre">
-    <title id="carte-titre">Carte des principales communes livrées autour de l'entrepôt LVA Distribution de Rignac : {e(', '.join(COMMUNES_CARTE))}</title>
+    <title id="carte-titre">Carte des principaux secteurs livrés autour de l'entrepôt LVA Distribution de Rignac : {e(', '.join(COMMUNES_CARTE))}</title>
     <defs><pattern id="points" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1f1f1f"/></pattern></defs>
     <rect width="500" height="500" fill="url(#points)"/>
     <circle cx="250" cy="245" r="200" class="anneau"/><circle cx="250" cy="245" r="100" class="anneau"/>
@@ -315,7 +314,7 @@ def carte():
     <g class="ville">{pts}<circle cx="308" cy="186" r="4"/></g>
     <circle cx="250" cy="245" r="15" class="halo"/><circle cx="250" cy="245" r="8" class="entrepot"/>
   </svg>
-  <figcaption class="legende"><span><i style="background:var(--rouge)"></i>Entrepôt LVA Distribution, Rignac</span><span><i style="background:var(--blanc)"></i>Principales communes livrées</span></figcaption>
+  <figcaption class="legende"><span><i style="background:var(--rouge)"></i>Entrepôt LVA Distribution, Rignac</span><span><i style="background:var(--blanc)"></i>Principaux secteurs livrés</span></figcaption>
 </figure>"""
 
 
@@ -336,7 +335,7 @@ def bande_marques(r):
 
 
 def bande_familles():
-    mots = ["Viandes", "Canard", "Fromages", "Crèmerie", "Charcuteries", "Boulangerie", "Surgelés", "Épicerie", "Boissons", "Desserts", "Produits de la mer", "Emballages"]
+    mots = ["Viandes", "Canard", "Fromages", "Crèmerie", "Charcuteries", "Boulangerie", "Surgelés", "Épicerie", "Boissons", "Desserts", "Emballages"]
     s = "".join(("<span class=\"creux\">" if i % 2 else "<span>") + f"{m}</span><i>✦</i>" for i, m in enumerate(mots))
     return f'<div class="defile" aria-hidden="true"><div class="defile-piste">{s}{s}</div></div>'
 
@@ -357,7 +356,7 @@ def formulaire():
     <div class="champ"><label for="f-nom">Nom et prénom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
     <div class="champ"><label for="f-etab">Établissement</label><input id="f-etab" name="etablissement" autocomplete="organization" required></div>
     <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></div>
-    <div class="champ"><label for="f-ville">Commune</label><input id="f-ville" name="commune" autocomplete="address-level2"></div>
+    <div class="champ"><label for="f-ville">Ville</label><input id="f-ville" name="commune" autocomplete="address-level2"></div>
     <div class="champ large"><label for="f-type">Votre activité</label><select id="f-type" name="activite"><option>Restaurant</option><option>Boulangerie ou pâtisserie</option><option>Hôtel ou camping</option><option>Café, bar ou snacking</option><option>Collectivité</option><option>Traiteur, boucherie ou épicerie</option><option>Autre</option></select></div>
     <div class="champ large"><label for="f-msg">Votre message (facultatif)</label><textarea id="f-msg" name="message" placeholder="Date d'ouverture, produits recherchés, jours de livraison souhaités…"></textarea></div>
   </div>
@@ -386,7 +385,7 @@ def accueil(variante="photo"):
     r = "" if variante == "photo" else "../"
     publics = [
         ("i-resto", "Restaurants", "Viandes, volailles, fromages, crèmerie, plats cuisinés et desserts."),
-        ("i-pain", "Boulangeries et pâtisseries", "Beurres, farines, ingrédients techniques, viennoiseries et prêts à garnir."),
+        ("i-pain", "Boulangeries et pâtisseries", "Beurres, ingrédients techniques, chocolat, viennoiseries et prêts à garnir."),
         ("i-hotel", "Hôtels et campings", "Petits-déjeuners, viennoiseries, jus de fruits, boissons et snacking."),
         ("i-cafe", "Cafés, bars et snacking", "Boissons, café, glaces, snacking et tout le nécessaire du comptoir."),
         ("i-ecole", "Collectivités", "Grands conditionnements, viandes, produits laitiers, surgelés et épicerie."),
@@ -405,7 +404,7 @@ def accueil(variante="photo"):
 {entree}  <div class="cadre une-texte">
     <span class="surtitre">Grossiste alimentaire · Lot &amp; Corrèze</span>
     <h1 class="titre"><span class="masque">LVA Distribution, grossiste alimentaire à Rignac dans le Lot : </span><span class="ligne"><span style="--d:.35s">Distributeur</span></span><span class="ligne rouge"><span style="--d:.5s">de saveurs</span></span></h1>
-    <p class="accroche">Plus de 4&nbsp;000 références en frais, surgelé et épicerie pour les restaurants, hôtels, boulangeries et collectivités du Lot et de la Corrèze. Livrées dans votre cuisine, par nos propres camions.</p>
+    <p class="accroche">Restaurants, hôtels, boulangeries, pâtisseries, traiteurs, boucheries, charcuteries, collectivités, etc. : votre grossiste dans le Lot et au-delà, livré par nos propres camions frigorifiques.</p>
     <div class="actions">
       <a class="btn btn-rouge" href="{r}contact/">Devenir client <svg class="ic"><use href="#i-fleche"/></svg></a>
       <a class="btn btn-ligne" href="{CATALOGUE}" rel="noopener"><svg class="ic"><use href="#i-livre"/></svg>Feuilleter le catalogue</a>
@@ -454,7 +453,7 @@ def accueil(variante="photo"):
     <h2 class="titre">Comme vous préférez</h2>
     <p class="chapo">Par téléphone avec votre interlocuteur habituel, ou en ligne à n'importe quelle heure. Vos tarifs personnalisés s'appliquent partout.</p>
     {canaux()}
-    <p class="livraison"><svg class="ic"><use href="#i-camion"/></svg><span><b>Livré par nos propres camions frigorifiques</b>, sur des tournées fixes, plusieurs fois par semaine selon votre commune : nous consulter. La chaîne du froid est tenue de notre entrepôt jusqu'à votre chambre froide.</span></p>
+    <p class="livraison"><svg class="ic"><use href="#i-camion"/></svg><span><b>Livré par nos propres camions frigorifiques</b>, sur des tournées fixes, plusieurs fois par semaine selon votre secteur : nous consulter. La chaîne du froid est tenue de notre entrepôt jusqu'à votre chambre froide.</span></p>
   </div>
 </section>
 <section class="section section-fonce" id="zone">
@@ -465,9 +464,8 @@ def accueil(variante="photo"):
       <h2 class="titre">Votre grossiste local</h2>
       <p class="chapo">Depuis notre entrepôt de Rignac, à côté de Gramat, nos camions livrent les professionnels du Lot et du bassin de Brive, au cœur de la vallée de la Dordogne.</p>
       <ul class="zones-liste">
-        <li><b>Tout le nord du Lot, et au-delà</b><span>Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Souillac, jusqu'à Figeac et Cahors.</span></li>
+        <li><b>Le Lot, et au-delà</b><span>Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Souillac, jusqu'à Figeac et Cahors.</span></li>
         <li><b>Brive et la Corrèze</b><span>Brive-la-Gaillarde et son bassin.</span></li>
-        <li><b>Dordogne et Aveyron</b><span>Les communes en limite de zone : appelez-nous, on regarde ensemble.</span></li>
       </ul>
       <p style="margin-top:30px"><a class="btn btn-ligne" href="{r}livraison/">Tout sur la livraison <svg class="ic"><use href="#i-fleche"/></svg></a></p>
     </div>
@@ -506,7 +504,7 @@ def produits():
 <section class="section">
   <div class="cadre">
     <span class="surtitre">Nos gammes</span>
-    <h2 class="titre">Quatorze univers, une seule commande</h2>
+    <h2 class="titre">Treize univers, une seule commande</h2>
     <p class="chapo">Le frais représente près de 70 % de nos ventes. Chaque gamme est présentée en détail, avec les conditionnements, dans notre <a href="{CATALOGUE}" rel="noopener">catalogue 2026 en ligne</a>.</p>
     <div class="gammes">{''.join(cartes)}</div>
   </div>
@@ -520,7 +518,7 @@ def produits():
     <p>Vous ne trouvez pas une référence ? Demandez-la à votre interlocuteur ou au <a href="tel:{TEL_INT}">{TEL}</a> : nous pouvons souvent la commander pour vous.</p>
   </div>
 </section>
-{appel(r, "Recevez nos tarifs", "Ouvrez votre compte : vos prix professionnels s'affichent ensuite sur la boutique en ligne et dans l'application.")}
+{appel(r, "Recevez nos tarifs", "Ouvrez votre compte : vos prix s'affichent ensuite sur la boutique en ligne et dans l'application.")}
 """
     return page("produits/index.html", "Produits alimentaires pour professionnels : frais, surgelé, épicerie · LVA Distribution",
                 "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, épicerie, boissons et emballages : plus de 4 000 références pour la restauration, livrées dans le Lot et en Corrèze.",
@@ -539,9 +537,9 @@ def livraison():
     <div>
       <span class="surtitre">Où nous livrons</span>
       <h2 class="titre">Au cœur de la vallée de la Dordogne</h2>
-      <p class="chapo">Nos tournées couvrent tout le nord du Lot, Figeac, Cahors, ainsi que Brive-la-Gaillarde et la Corrèze. Les communes en limite de Dordogne et d'Aveyron sont étudiées au cas par cas.</p>
+      <p class="chapo">Nos tournées couvrent le Lot et au-delà, dont Figeac et Cahors, ainsi que Brive-la-Gaillarde et la Corrèze.</p>
       <ul class="zones-liste">
-        <li><b>Plusieurs livraisons par semaine</b><span>Des tournées fixes ; les jours dépendent de votre commune : nous consulter.</span></li>
+        <li><b>Plusieurs livraisons par semaine</b><span>Des tournées fixes ; les jours dépendent de votre secteur : nous consulter.</span></li>
         <li><b>Nos propres camions frigorifiques</b><span>Le frais et le surgelé restent au froid jusqu'à votre chambre froide.</span></li>
         <li><b>Un entrepôt à Rignac</b><span>{ADRESSE[0]}, {ADRESSE[1]} {ADRESSE[2]}, à quelques minutes de Gramat et de Rocamadour.</span></li>
       </ul>
@@ -550,9 +548,9 @@ def livraison():
 </section>
 <section class="section section-fonce">
   <div class="cadre">
-    <span class="surtitre">Communes</span>
-    <h2 class="titre">Principales communes livrées</h2>
-    <p class="chapo">Nous livrons ces communes et leurs alentours. Votre commune n'apparaît pas ? Appelez-nous au <a href="tel:{TEL_INT}">{TEL}</a>.</p>
+    <span class="surtitre">Secteurs</span>
+    <h2 class="titre">Principaux secteurs livrés</h2>
+    <p class="chapo">Nous livrons ces secteurs et leurs alentours. Votre secteur n'apparaît pas ? Appelez-nous au <a href="tel:{TEL_INT}">{TEL}</a>.</p>
     <ul class="communes">{communes}</ul>
   </div>
 </section>
@@ -563,7 +561,7 @@ def livraison():
     {faq_html(FAQ_LIVRAISON)}
   </div>
 </section>
-{appel(r, "Vérifions votre commune", "Dites-nous où se trouve votre établissement : nous vous indiquons les jours de passage de la tournée.")}
+{appel(r, "Vérifions votre secteur", "Dites-nous où se trouve votre établissement : nous vous indiquons les jours de passage de la tournée.")}
 """
     service = {"@type": "Service", "name": "Livraison de produits alimentaires aux professionnels", "provider": {"@id": ORGA_ID}, "areaServed": ORGA["areaServed"], "serviceType": "Livraison en camion frigorifique"}
     return page("livraison/index.html", "Livraison grossiste alimentaire Lot, Brive et Corrèze · LVA Distribution",
@@ -591,7 +589,7 @@ def commander():
       <li><b>Vous nous contactez</b><span>Par le formulaire ou au {TEL}.</span></li>
       <li><b>Un commercial vous rappelle</b><span>Il fait le point sur vos besoins et vous présente nos tarifs.</span></li>
       <li><b>Votre compte est ouvert</b><span>Vous recevez vos accès à la boutique en ligne et à l'application.</span></li>
-      <li><b>Première livraison</b><span>Avec la tournée de votre commune, en camion frigorifique.</span></li>
+      <li><b>Première livraison</b><span>Avec la tournée de votre secteur, en camion frigorifique.</span></li>
     </ol>
   </div>
 </section>
@@ -731,17 +729,17 @@ def annexes(urls):
     with open(os.path.join(SORTIE, "llms.txt"), "w", encoding="utf-8", newline="\n") as f:
         f.write(f"""# LVA Distribution
 
-> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine. Vente aux professionnels uniquement.
+> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine.
 
 ## Coordonnées
 - Adresse : {ADRESSE[0]}, {ADRESSE[1]} {ADRESSE[2]}, France
 - Téléphone : {TEL}{ligne_mail}
-- Boutique en ligne (clients professionnels) : {BOUTIQUE}
+- Boutique en ligne (clients) : {BOUTIQUE}
 - Application mobile : {APPLI}
 - Catalogue 2026 : {CATALOGUE}
 
 ## Zone de livraison
-{communes} ; Lot et Corrèze ; communes en limite de Dordogne et d'Aveyron au cas par cas. Jours de passage selon la commune : nous consulter.
+{communes} ; le Lot et au-delà, Brive et la Corrèze. Jours de passage selon le secteur : nous consulter.
 
 ## Gammes
 {gammes}
@@ -750,7 +748,7 @@ def annexes(urls):
 {", ".join(mq[0] for mq in MARQUES)}, ainsi que des produits régionaux comme le Rocamadour AOP.
 
 ## Commander
-Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'application iPhone et Android. Tarifs professionnels personnalisés, visibles après ouverture du compte. Ouverture de compte : {DOMAINE}/contact/
+Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'application iPhone et Android. Tarifs personnalisés, visibles après ouverture du compte. Ouverture de compte : {DOMAINE}/contact/
 
 ## Questions fréquentes
 {faq}
