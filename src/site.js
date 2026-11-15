@@ -93,6 +93,20 @@
     });
   });
 
+  // Bouton pause : arrête la vidéo et les bandes qui défilent
+  var pause = document.querySelector('.pause-anim');
+  if (pause) {
+    var poser = function (arret) {
+      doc.classList.toggle('anim-arretees', arret);
+      pause.setAttribute('aria-pressed', arret);
+      pause.setAttribute('aria-label', arret ? 'Relancer la vidéo et les animations' : 'Mettre en pause la vidéo et les animations');
+      pause.querySelector('svg').innerHTML = arret ? '<path d="M7 4l13 8-13 8z"/>' : '<path d="M9 5v14M15 5v14"/>';
+      if (film) { if (arret) film.pause(); else { var j = film.play(); if (j && j.catch) j.catch(function () {}); } }
+    };
+    if (calme) poser(true);
+    pause.addEventListener('click', function () { poser(!doc.classList.contains('anim-arretees')); });
+  }
+
   var an = document.getElementById('annee'); if (an) an.textContent = new Date().getFullYear();
 
   // Formulaire « Devenir client » : prépare un courriel, rien n'est stocké

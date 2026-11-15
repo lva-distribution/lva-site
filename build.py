@@ -22,6 +22,7 @@ TEL_INT = "+33565100020"
 BOUTIQUE = "https://boutique.lva-distribution.fr/"
 APPLI = "https://onelink.to/w3tu83"
 APPSTORE = "https://apps.apple.com/fr/app/lva-distribution/id6754167450"
+PLAYSTORE = "https://play.google.com/store/apps/details?id=fr.lva.ecommerce"
 CATALOGUE = "https://lva-catalogue.lva-distribution.workers.dev/"
 ADRESSE = ("Z.A. Les Vieilles Vignes, Le Causse", "46500", "Rignac")
 
@@ -91,10 +92,10 @@ COMMUNES = [
 COMMUNES_CARTE = ["Rocamadour", "Gramat", "Padirac", "Lacave", "Martel", "Saint-Céré", "Bretenoux", "Biars-sur-Cère", "Figeac", "Cahors", "Brive-la-Gaillarde"]
 
 MARQUES = [  # (nom, fichier logo ou None, fond sombre)
-    ("Rougié", "rougie.svg", False), ("Elle & Vire", "elle-et-vire.svg", False), ("Président", "president.png", False),
-    ("Isigny Sainte-Mère", "isigny-sainte-mere.svg", False), ("Candia", "candia.png", False), ("Bridor", "bridor.jpg", True),
+    ("Rougié", "rougie.svg", False), ("Elle & Vire", "elle-et-vire.webp", False), ("Président", "president.png", False),
+    ("Isigny Sainte-Mère", "isigny-sainte-mere.webp", False), ("Candia", "candia.png", False), ("Bridor", "bridor.jpg", True),
     ("Vandemoortele", None, False), ("Debic", None, False), ("Callebaut", "callebaut.svg", False),
-    ("Andros", "andros.png", False), ("Jean Floc'h", "jean-floch.svg", False),
+    ("Andros", "andros.png", False), ("Jean Floc'h", "jean-floch.webp", False),
 ]
 
 PHOTOS_RACINE = {"viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp"}
@@ -173,7 +174,7 @@ ORGA = {
     "geo": {"@type": "GeoCoordinates", "latitude": 44.808, "longitude": 1.693},
     "areaServed": [{"@type": "City", "name": c} for c, _ in COMMUNES] + [{"@type": "AdministrativeArea", "name": n} for n in ("Lot", "Corrèze")],
     "knowsAbout": [g[0] for g in GAMMES],
-    "sameAs": [APPSTORE],
+    "sameAs": [APPSTORE, PLAYSTORE],
     "potentialAction": {"@type": "OrderAction", "target": BOUTIQUE},
 }
 if MAIL:
@@ -181,6 +182,22 @@ if MAIL:
 for cle_ld, cle in (("vatID", "tva"), ("taxID", "siren")):
     if MENTIONS.get(cle):
         ORGA[cle_ld] = MENTIONS[cle]
+
+
+def dimensions(chemin):
+    """width/height d'une image de img/ (SVG : lus dans viewBox), chaîne vide si illisible."""
+    p = os.path.join(ICI, "img", chemin)
+    try:
+        if p.endswith(".svg"):
+            import re as _re
+            t = open(p, encoding="utf-8", errors="ignore").read(4000)
+            m = _re.search(r'viewBox="[\d.\-]+[ ,]+[\d.\-]+[ ,]+([\d.]+)[ ,]+([\d.]+)"', t)
+            return f' width="{round(float(m.group(1)))}" height="{round(float(m.group(2)))}"' if m else ""
+        from PIL import Image
+        with Image.open(p) as im:
+            return f' width="{im.width}" height="{im.height}"'
+    except Exception:
+        return ""
 
 
 def ld(*objets):
@@ -343,7 +360,7 @@ def bande_marques(r):
         out = []
         for nom, f, sombre in MARQUES:
             alt = "" if cache else e(nom)
-            contenu = f'<img src="{r}assets/img/marques/{f}" alt="{alt}" loading="lazy">' if f else f'<span class="mot">{e(nom)}</span>'
+            contenu = f'<img src="{r}assets/img/marques/{f}" alt="{alt}" loading="lazy"{dimensions("marques/" + f)}>' if f else f'<span class="mot">{e(nom)}</span>'
             masque = ' aria-hidden="true"' if cache else ""
             out.append(f'<div class="logo-marque{" sombre" if sombre else ""}"{masque}>{contenu}</div>')
         return "".join(out)
@@ -364,7 +381,7 @@ def canaux():
     return f"""<div class="canaux">
   <article class="canal"><span class="num">01</span><h3>Par téléphone</h3><p>Notre équipe de télévente vous appelle au jour convenu pour prendre votre commande et vous signaler les promotions et nouveautés. Vous pouvez aussi nous appeler.</p><a class="lien" href="tel:{TEL_INT}"><svg class="ic"><use href="#i-tel"/></svg>{TEL}</a></article>
   <article class="canal"><span class="num">02</span><h3>Sur la boutique en ligne</h3><p>Commandez 24h/24 depuis votre ordinateur : cadencier, historique d'achats, promotions, suivi des commandes et des factures.</p><a class="lien" href="{BOUTIQUE}" rel="noopener">boutique.lva-distribution.fr <svg class="ic"><use href="#i-fleche"/></svg></a></article>
-  <article class="canal"><span class="num">03</span><h3>Sur l'application</h3><p>Toute la boutique dans votre poche : recommandez vos articles habituels en un clic, depuis la cuisine ou la réserve.</p><div class="stores"><a href="{APPSTORE}" rel="noopener"><svg><use href="#i-apple"/></svg>App Store</a><a href="{APPLI}" rel="noopener"><svg><use href="#i-play"/></svg>Google Play</a></div></article>
+  <article class="canal"><span class="num">03</span><h3>Sur l'application</h3><p>Toute la boutique dans votre poche : recommandez vos articles habituels en un clic, depuis la cuisine ou la réserve.</p><div class="stores"><a href="{APPSTORE}" rel="noopener"><svg><use href="#i-apple"/></svg>App Store</a><a href="{PLAYSTORE}" rel="noopener"><svg><use href="#i-play"/></svg>Google Play</a></div></article>
 </div>"""
 
 
@@ -414,6 +431,7 @@ def accueil(variante="video"):
     pub = "".join(f'<div class="public"><svg class="ic"><use href="#{i}"/></svg><h3>{e(t)}</h3><p>{e(p)}</p></div>' for i, t, p in publics)
     if variante == "video":
         entree = f"""<section class="une une-video" id="accueil">
+  <button class="pause-anim" type="button" aria-pressed="false" aria-label="Mettre en pause la vidéo et les animations"><svg class="ic" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></button>
   <div class="une-film"><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg?v={VERSION_VIDEO}" aria-hidden="true"><source src="{r}assets/video/hero-cuisine-1080.mp4?v={VERSION_VIDEO}" type="video/mp4" media="(min-width: 900px)"><source src="{r}assets/video/hero-cuisine-720.mp4?v={VERSION_VIDEO}" type="video/mp4"></video></div>
 """
     else:
@@ -422,8 +440,7 @@ def accueil(variante="video"):
 """
     corps = f"""
 {entree}  <div class="cadre une-texte">
-    <span class="surtitre">Grossiste alimentaire · Lot &amp; Corrèze</span>
-    <h1 class="titre"><span class="masque">LVA Distribution, grossiste alimentaire à Rignac dans le Lot : </span><span class="ligne"><span style="--d:.35s">Distributeur</span></span><span class="ligne rouge"><span style="--d:.5s">de saveurs</span></span></h1>
+    <h1 class="titre"><span class="surtitre h1-lieu">LVA Distribution · grossiste alimentaire à Rignac, Lot</span><span class="ligne"><span style="--d:.35s">Distributeur</span></span><span class="ligne rouge"><span style="--d:.5s">de saveurs</span></span></h1>
     <p class="accroche">Restaurants, hôtels, boulangeries, pâtisseries, traiteurs, boucheries, charcuteries, collectivités, etc. : votre grossiste dans le Lot et au-delà, livré par nos propres camions frigorifiques.</p>
     <div class="actions">
       <a class="btn btn-rouge" href="{r}contact/">Devenir client <svg class="ic"><use href="#i-fleche"/></svg></a>
@@ -501,8 +518,8 @@ def accueil(variante="video"):
 {appel(r)}
 """
     fichier = "index.html"
-    return page(fichier, "LVA Distribution · Grossiste alimentaire pour professionnels, Lot et Corrèze",
-                "Grossiste alimentaire à Rignac (Lot) : plus de 4 000 références en frais, surgelé et épicerie pour restaurants, boulangeries, hôtels et collectivités. Livraison en camions frigorifiques dans le Lot et en Corrèze.",
+    return page(fichier, "LVA Distribution · Grossiste alimentaire Lot et Corrèze",
+                "Grossiste alimentaire à Rignac (Lot) : plus de 4 000 références en frais, surgelé et épicerie, livrées en camion frigorifique dans le Lot et en Corrèze.",
                 corps, r, schemas=[faq_ld(FAQ_ACCUEIL)], accueil=True)
 
 
@@ -515,7 +532,7 @@ def produits():
         if img:
             dossier = "" if img in PHOTOS_RACINE else "univers/"
             pos = ' style="object-position:50% 78%"' if img == "bandeau-droite.webp" else ""
-            vis = f'<div class="visuel"><img src="{r}assets/img/{dossier}{img}" alt="{e(titre)} chez LVA Distribution" loading="lazy"{pos}></div>'
+            vis = f'<div class="visuel"><img src="{r}assets/img/{dossier}{img}" alt="{e(titre)} chez LVA Distribution" loading="lazy"{dimensions(dossier + img)}{pos}></div>'
         puces = "".join(f"<li>{e(s)}</li>" for s in subs)
         cartes.append(f'<article class="gamme">{vis}<div class="corps"><h2>{e(titre)}</h2><p>{e(texte)}</p><ul>{puces}</ul></div></article>')
     catalogue = {"@type": "OfferCatalog", "name": "Gammes LVA Distribution", "itemListElement": [{"@type": "OfferCatalog", "name": t, "description": tx} for t, _, tx, _ in GAMMES]}
@@ -540,8 +557,8 @@ def produits():
 </section>
 {appel(r, "Recevez nos tarifs", "Ouvrez votre compte : vos prix s'affichent ensuite sur la boutique en ligne et dans l'application.")}
 """
-    return page("produits/index.html", "Produits alimentaires pour professionnels : frais, surgelé, épicerie · LVA Distribution",
-                "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, épicerie, boissons et emballages : plus de 4 000 références pour la restauration, livrées dans le Lot et en Corrèze.",
+    return page("produits/index.html", "Nos produits : frais, surgelé, épicerie · LVA Distribution",
+                "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, boissons, emballages : plus de 4 000 références livrées dans le Lot et en Corrèze.",
                 corps, r, actif="produits/", schemas=[ariane_ld(chemin), catalogue])
 
 
@@ -584,8 +601,8 @@ def livraison():
 {appel(r, "Vérifions votre secteur", "Dites-nous où se trouve votre établissement : nous vous indiquons les jours de passage de la tournée.")}
 """
     service = {"@type": "Service", "name": "Livraison de produits alimentaires aux professionnels", "provider": {"@id": ORGA_ID}, "areaServed": ORGA["areaServed"], "serviceType": "Livraison en camion frigorifique"}
-    return page("livraison/index.html", "Livraison grossiste alimentaire Lot, Brive et Corrèze · LVA Distribution",
-                "LVA Distribution livre les professionnels de la restauration dans le Lot (Rocamadour, Gramat, Saint-Céré, Figeac, Cahors…) et en Corrèze (Brive) avec ses camions frigorifiques, plusieurs fois par semaine.",
+    return page("livraison/index.html", "Livraison Lot, Brive et Corrèze · LVA Distribution",
+                "Livraison en camion frigorifique plusieurs fois par semaine : Rocamadour, Gramat, Saint-Céré, Figeac, Cahors, Brive… depuis notre entrepôt de Rignac.",
                 corps, r, actif="livraison/", schemas=[ariane_ld(chemin), faq_ld(FAQ_LIVRAISON), service])
 
 
@@ -622,8 +639,8 @@ def commander():
 </section>
 {appel(r)}
 """
-    return page("commander/index.html", "Commander chez votre grossiste : télévente, boutique en ligne, application · LVA Distribution",
-                "Commandez vos produits professionnels par téléphone, sur la boutique en ligne LVA Distribution 24h/24 ou sur l'application iPhone et Android. Ouverture de compte sur simple demande.",
+    return page("commander/index.html", "Commander : téléphone, en ligne, appli · LVA Distribution",
+                "Commandez par téléphone, sur la boutique en ligne 24h/24 ou sur l'application iPhone et Android. Ouverture de compte sur simple demande.",
                 corps, r, actif="commander/", schemas=[ariane_ld(chemin), faq_ld(FAQ_COMMANDE)])
 
 
@@ -664,8 +681,8 @@ def qui():
 {appel(r, "Travaillons ensemble", "Restaurant, boulangerie, hôtel ou collectivité : parlons de vos besoins.")}
 """
     about = {"@type": "AboutPage", "@id": DOMAINE + "/qui-sommes-nous/#a-propos", "url": DOMAINE + "/qui-sommes-nous/", "mainEntity": {"@id": ORGA_ID}}
-    return page("qui-sommes-nous/index.html", "Qui sommes-nous · LVA Distribution, grossiste alimentaire à Rignac (Lot)",
-                "LVA Distribution, grossiste alimentaire installé à Rignac près de Gramat (Lot) : plus de 4 000 références et plus de 700 professionnels livrés dans le Lot et en Corrèze.",
+    return page("qui-sommes-nous/index.html", "Qui sommes-nous · LVA Distribution, grossiste à Rignac",
+                "Grossiste alimentaire installé à Rignac, près de Gramat (Lot) : plus de 4 000 références et plus de 700 clients livrés dans le Lot et en Corrèze.",
                 corps, r, actif="qui-sommes-nous/", schemas=[ariane_ld(chemin), about])
 
 
@@ -692,7 +709,7 @@ def contact():
 </section>
 """
     cp = {"@type": "ContactPage", "@id": DOMAINE + "/contact/#contact", "url": DOMAINE + "/contact/", "mainEntity": {"@id": ORGA_ID}}
-    return page("contact/index.html", "Contact et ouverture de compte · LVA Distribution, Rignac (Lot)",
+    return page("contact/index.html", "Contact et ouverture de compte · LVA Distribution",
                 "Contactez LVA Distribution au 05 65 10 00 20 pour ouvrir un compte professionnel. Entrepôt : Z.A. Les Vieilles Vignes, 46500 Rignac (Lot).",
                 corps, r, actif="contact/", schemas=[ariane_ld(chemin), cp])
 
