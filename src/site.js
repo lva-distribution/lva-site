@@ -20,7 +20,18 @@
   var film = document.querySelector('.une-film video');
   if (film) {
     if (calme) { film.removeAttribute('autoplay'); film.pause(); }
-    else { var essai = film.play(); if (essai && essai.catch) essai.catch(function () {}); }
+    else {
+      // relance si le téléphone a bloqué la lecture (mode économie d'énergie…) : au premier toucher, ou au retour sur l'onglet
+      var relancer = function () {
+        if (film.paused && !doc.classList.contains('anim-arretees')) { var j = film.play(); if (j && j.catch) j.catch(function () {}); }
+      };
+      var essai = film.play();
+      if (essai && essai.catch) essai.catch(function () {
+        ['pointerdown', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, relancer, { once: true, passive: true }); });
+      });
+      film.addEventListener('canplay', relancer, { once: true });
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) relancer(); });
+    }
   }
 
   // Barre de lecture et parallaxe
