@@ -33,8 +33,10 @@
     barre.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
     // la vidéo s'assombrit puis s'efface pendant que le texte passe devant
     if (filmBloc) {
-      var p = Math.min(1, Math.max(0, y / (filmBloc.offsetHeight * 0.9)));
+      var course = window.innerWidth > 760 ? filmBloc.offsetHeight * 0.9 : filmBloc.offsetHeight * 2.4;
+      var p = Math.min(1, Math.max(0, y / course));
       filmBloc.style.setProperty('--p', p.toFixed(3));
+      filmBloc.style.visibility = p >= 1 ? 'hidden' : 'visible';
     }
     if (!calme && photo && window.innerWidth > 760 && y < window.innerHeight * 1.2) photo.style.transform = 'translate3d(0,' + (y * 0.35) + 'px,0)';
   }

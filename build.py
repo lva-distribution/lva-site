@@ -53,6 +53,17 @@ def lire_json(nom):
 
 MENTIONS = lire_json("mentions.json")
 
+def _version():
+    import hashlib
+    h = hashlib.sha1()
+    for f in ("src/site.css", "src/site.js"):
+        with open(os.path.join(ICI, f), "rb") as fh:
+            h.update(fh.read())
+    return h.hexdigest()[:8]
+
+
+VERSION = _version()
+
 
 def a_mail(texte=None, icone=False):
     if not MAIL:
@@ -259,7 +270,7 @@ def page(chemin_fichier, titre, description, corps, r, actif=None, schemas=(), a
 <link rel="icon" href="{r}assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="{r}assets/img/apple-touch-icon.png">
 <link rel="preload" href="{r}assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-{precharge}<link rel="stylesheet" href="{r}assets/site.css">
+{precharge}<link rel="stylesheet" href="{r}assets/site.css?v={VERSION}">
 <script>document.documentElement.classList.add('js')</script>
 {ld(ORGA, site, webpage, *schemas)}
 </head>
@@ -288,7 +299,7 @@ def page(chemin_fichier, titre, description, corps, r, actif=None, schemas=(), a
 {corps}
 </main>
 {pied(r)}
-<script src="{r}assets/site.js" defer></script>
+<script src="{r}assets/site.js?v={VERSION}" defer></script>
 </body>
 </html>
 """
@@ -395,7 +406,7 @@ def accueil(variante="photo"):
     pub = "".join(f'<div class="public"><svg class="ic"><use href="#{i}"/></svg><h3>{e(t)}</h3><p>{e(p)}</p></div>' for i, t, p in publics)
     if variante == "video":
         entree = f"""<section class="une une-video" id="accueil">
-  <div class="une-film" data-parallaxe><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg" aria-hidden="true"><source src="{r}assets/video/hero-cuisine-1080.mp4" type="video/mp4" media="(min-width: 900px)"><source src="{r}assets/video/hero-cuisine-720.mp4" type="video/mp4"></video></div>
+  <div class="une-film"><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg" aria-hidden="true"><source src="{r}assets/video/hero-cuisine-1080.mp4" type="video/mp4" media="(min-width: 900px)"><source src="{r}assets/video/hero-cuisine-720.mp4" type="video/mp4"></video></div>
 """
     else:
         entree = f"""<section class="une" id="accueil">
