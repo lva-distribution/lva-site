@@ -65,6 +65,15 @@ def _version():
 VERSION = _version()
 
 
+def _version_video():
+    import hashlib
+    with open(os.path.join(ICI, "video", "hero-cuisine-720.mp4"), "rb") as fh:
+        return hashlib.sha1(fh.read()).hexdigest()[:8]
+
+
+VERSION_VIDEO = _version_video()
+
+
 def a_mail(texte=None, icone=False):
     if not MAIL:
         return ""
@@ -239,7 +248,7 @@ def page(chemin_fichier, titre, description, corps, r, actif=None, schemas=(), a
     webpage = {"@type": "WebPage", "@id": url + "#page", "url": url, "name": titre, "description": description, "inLanguage": "fr-FR", "isPartOf": {"@id": DOMAINE + "/#site"}, "about": {"@id": ORGA_ID}, "dateModified": AUJ}
     precharge = ""
     if accueil:
-        image_hero = "video/hero-cuisine.jpg" if chemin_fichier.startswith("video/") else "img/hero-farine.webp"
+        image_hero = f"video/hero-cuisine.jpg?v={VERSION_VIDEO}"
         precharge = f'<link rel="preload" href="{r}assets/{image_hero}" as="image" fetchpriority="high">' + "\n"
     robots = "index, follow, max-image-preview:large" if indexer else "noindex"
     doc = f"""<!doctype html>
@@ -392,8 +401,8 @@ def tete_page(r, chemin, surtitre, h1, chapo, photo=None):
 
 
 # ---------------------------------------------------------------- pages
-def accueil(variante="photo"):
-    r = "" if variante == "photo" else "../"
+def accueil(variante="video"):
+    r = ""
     publics = [
         ("i-resto", "Restaurants", "Viandes, volailles, fromages, crèmerie, plats cuisinés et desserts."),
         ("i-pain", "Boulangeries et pâtisseries", "Beurres, ingrédients techniques, chocolat, viennoiseries et prêts à garnir."),
@@ -405,7 +414,7 @@ def accueil(variante="photo"):
     pub = "".join(f'<div class="public"><svg class="ic"><use href="#{i}"/></svg><h3>{e(t)}</h3><p>{e(p)}</p></div>' for i, t, p in publics)
     if variante == "video":
         entree = f"""<section class="une une-video" id="accueil">
-  <div class="une-film"><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg" aria-hidden="true"><source src="{r}assets/video/hero-cuisine-1080.mp4" type="video/mp4" media="(min-width: 900px)"><source src="{r}assets/video/hero-cuisine-720.mp4" type="video/mp4"></video></div>
+  <div class="une-film"><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg?v={VERSION_VIDEO}" aria-hidden="true"><source src="{r}assets/video/hero-cuisine-1080.mp4?v={VERSION_VIDEO}" type="video/mp4" media="(min-width: 900px)"><source src="{r}assets/video/hero-cuisine-720.mp4?v={VERSION_VIDEO}" type="video/mp4"></video></div>
 """
     else:
         entree = f"""<section class="une" id="accueil">
@@ -491,10 +500,10 @@ def accueil(variante="photo"):
 </section>
 {appel(r)}
 """
-    fichier = "index.html" if variante == "photo" else "video/index.html"
+    fichier = "index.html"
     return page(fichier, "LVA Distribution · Grossiste alimentaire pour professionnels, Lot et Corrèze",
                 "Grossiste alimentaire à Rignac (Lot) : plus de 4 000 références en frais, surgelé et épicerie pour restaurants, boulangeries, hôtels et collectivités. Livraison en camions frigorifiques dans le Lot et en Corrèze.",
-                corps, r, schemas=[faq_ld(FAQ_ACCUEIL)], accueil=True, indexer=(variante == "photo"), canonique=DOMAINE + "/")
+                corps, r, schemas=[faq_ld(FAQ_ACCUEIL)], accueil=True)
 
 
 def produits():
@@ -714,6 +723,15 @@ def mentions():
     return page("mentions-legales/index.html", "Mentions légales · LVA Distribution", "Mentions légales du site de LVA Distribution, grossiste alimentaire à Rignac (Lot).", corps, r, schemas=[ariane_ld(chemin)])
 
 
+def redirection_video():
+    cible = os.path.join(SORTIE, "video", "index.html")
+    os.makedirs(os.path.dirname(cible), exist_ok=True)
+    with open(cible, "w", encoding="utf-8", newline="\n") as f:
+        f.write('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>LVA Distribution</title>'
+                f'<link rel="canonical" href="{DOMAINE}/"><meta name="robots" content="noindex">'
+                '<meta http-equiv="refresh" content="0; url=../"></head><body><a href="../">Accueil LVA Distribution</a></body></html>')
+
+
 def page_404():
     corps = f"""<section class="tete-page"><div class="cadre"><span class="surtitre">Erreur 404</span><h1 class="titre">Cette page n'existe pas</h1><p class="chapo">Elle a peut-être été déplacée. Revenez à l'accueil ou appelez-nous au {TEL}.</p><div class="actions" style="margin-top:28px"><a class="btn btn-rouge" href="/">Retour à l'accueil</a><a class="btn btn-ligne" href="/produits/">Nos produits</a></div></div></section>"""
     page("404.html", "Page introuvable · LVA Distribution", "Cette page n'existe pas.", corps, "/", indexer=False)
@@ -803,7 +821,7 @@ if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
     ressources()
     urls = [accueil(), produits(), livraison(), commander(), qui(), contact(), mentions()]
-    accueil("video")  # variante à comparer, non indexée
+    redirection_video()  # ancienne adresse /video/ renvoyée vers l'accueil
     page_404()
     annexes(urls)
     print("Site construit :", len(urls), "pages dans", SORTIE, "| courriel :", "oui" if MAIL else "NON (variable LVA_EMAIL absente)")
