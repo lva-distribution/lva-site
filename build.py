@@ -395,7 +395,7 @@ def accueil(variante="photo"):
     pub = "".join(f'<div class="public"><svg class="ic"><use href="#{i}"/></svg><h3>{e(t)}</h3><p>{e(p)}</p></div>' for i, t, p in publics)
     if variante == "video":
         entree = f"""<section class="une une-video" id="accueil">
-  <div class="une-film" data-parallaxe><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg" aria-hidden="true"><source src="{r}assets/video/hero-cuisine.mp4" type="video/mp4"></video></div>
+  <div class="une-film" data-parallaxe><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg" aria-hidden="true"><source src="{r}assets/video/hero-cuisine-1080.mp4" type="video/mp4" media="(min-width: 900px)"><source src="{r}assets/video/hero-cuisine-720.mp4" type="video/mp4"></video></div>
 """
     else:
         entree = f"""<section class="une" id="accueil">
