@@ -113,17 +113,19 @@ svg.ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: ro
 .une-video { min-height: 100svh; display: flex; align-items: flex-end; }
 .une-film { position: absolute; inset: 0; z-index: -2; overflow: hidden; will-change: transform; }
 .une-film video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.une-film { opacity: calc(1 - var(--p, 0) * .75); }
+.une-film::after { content: ""; position: absolute; inset: 0; background: var(--noir); opacity: calc(var(--p, 0) * .8); pointer-events: none; }
 .une-video::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(70% 60% at 50% 100%, rgba(163,34,57,.28), transparent 70%), linear-gradient(180deg, rgba(14,14,14,.55) 0%, rgba(14,14,14,.25) 35%, rgba(14,14,14,.75) 72%, var(--noir) 100%); }
 .une-video .une-texte { margin-top: 0; padding-top: 180px; }
 .js .une-film video { animation: recul 2.4s cubic-bezier(.2,.75,.15,1) both; }
 /* Sur téléphone : la vidéo entière en 16:9 sous l'en-tête, le texte en dessous */
 @media (max-width: 760px) {
-  .une-video { display: block; min-height: 0; padding-top: 116px; }
+  .une-video { display: block; min-height: 0; padding-top: 116px; overflow: visible; }
   .une-video::before { display: none; }
-  .une-film { position: relative; inset: auto; z-index: 0; aspect-ratio: 16 / 9; width: 100%;
+  .une-film { position: sticky; top: 116px; inset: auto; z-index: 0; aspect-ratio: 16 / 9; width: 100%;
     -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent); mask-image: linear-gradient(180deg, #000 72%, transparent); }
-  .une-video .une-texte { position: relative; margin-top: -18px; padding-top: 0;
+  .une-video .une-texte { position: relative; z-index: 1; margin-top: -18px; padding-top: 0;
     background: radial-gradient(90% 60% at 50% 100%, rgba(163,34,57,.22), transparent 70%); }
 }
 
