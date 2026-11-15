@@ -30,7 +30,7 @@
     var y = window.scrollY, h = doc.scrollHeight - window.innerHeight;
     surScroll();
     barre.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
-    if (!calme && photo && y < window.innerHeight * 1.2) photo.style.transform = 'translate3d(0,' + (y * 0.35) + 'px,0)';
+    if (!calme && photo && window.innerWidth > 760 && y < window.innerHeight * 1.2) photo.style.transform = 'translate3d(0,' + (y * 0.35) + 'px,0)';
   }
   var attente = false;
   window.addEventListener('scroll', function () {
