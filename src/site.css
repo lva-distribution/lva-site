@@ -381,3 +381,10 @@ svg.ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: ro
 .pause-anim svg { width: 16px; height: 16px; }
 .anim-arretees .defile-piste, .anim-arretees .marques-piste, .anim-arretees .carte .halo { animation-play-state: paused; }
 @media (max-width: 760px) { .pause-anim { top: calc(116px + 56.25vw - 50px); bottom: auto; right: 12px; width: 34px; height: 34px; } }
+
+/* Bandes qui défilent pilotées par site.js : on peut aussi les faire glisser au doigt ou à la souris */
+.js .defile, .js .marques-fenetre { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; cursor: grab; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+.js .defile::-webkit-scrollbar, .js .marques-fenetre::-webkit-scrollbar { display: none; }
+.js .defile-piste, .js .marques-piste { animation: none; }
+.js .defile.saisi, .js .marques-fenetre.saisi { cursor: grabbing; }
+.defile *, .marques-fenetre * { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
