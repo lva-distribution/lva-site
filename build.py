@@ -59,7 +59,7 @@ MENTIONS = lire_json("mentions.json")
 def _version():
     import hashlib
     h = hashlib.sha1()
-    for f in ("src/site.css", "src/site.js"):
+    for f in ("src/site.css", "src/site.js", "src/stats.js"):
         with open(os.path.join(ICI, f), "rb") as fh:
             h.update(fh.read().replace(b"\r\n", b"\n"))  # même empreinte quelles que soient les fins de ligne
     return h.hexdigest()[:8]
@@ -739,7 +739,7 @@ def mentions():
 <h2 class="titre">Hébergement</h2>
 <p>GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
 <h2 class="titre">Données personnelles et cookies</h2>
-<p>Ce site ne dépose aucun cookie et ne mesure pas l'audience. Le formulaire « Devenir client » n'enregistre rien : il prépare un courriel dans votre propre messagerie. Les informations que vous nous envoyez servent uniquement à vous recontacter et à ouvrir votre compte client. Vous pouvez demander leur consultation, leur rectification ou leur suppression en nous écrivant.</p>
+<p>Ce site ne dépose aucun cookie. Il mesure sa fréquentation de façon anonyme (pages vues, provenance, type d'appareil, clics sur le téléphone ou la boutique), sans cookie et sans conserver d'adresse IP : un visiteur n'est reconnu que le jour même, par une empreinte non réversible renouvelée chaque jour. Le formulaire « Devenir client » n'enregistre rien : il prépare un courriel dans votre propre messagerie. Les informations que vous nous envoyez servent uniquement à vous recontacter et à ouvrir votre compte client. Vous pouvez demander leur consultation, leur rectification ou leur suppression en nous écrivant.</p>
 <h2 class="titre">Marques et photographies</h2>
 <p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026. Vidéo d'accueil : extraits de la banque Mixkit, sous licence gratuite « Stock Video Free License ».</p>
 </div></section>
@@ -754,6 +754,20 @@ def redirection_video():
         f.write('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>LVA Distribution</title>'
                 f'<link rel="canonical" href="{DOMAINE}/"><meta name="robots" content="noindex">'
                 '<meta http-equiv="refresh" content="0; url=../"></head><body><a href="../">Accueil LVA Distribution</a></body></html>')
+
+
+def page_stats():
+    r = "../"
+    corps = f"""<section class="tete-page"><div class="cadre"><span class="surtitre">Réservé à LVA</span><h1 class="titre">Fréquentation du site</h1>
+<p class="chapo">Mesure anonyme, sans cookie. Entrez le code pour afficher les chiffres.</p>
+<form class="stats-acces" id="stats-acces"><div class="champ"><label for="stats-code">Code</label><input id="stats-code" autocomplete="off" autocapitalize="characters"></div>
+<div class="champ"><label for="stats-jours">Période</label><select id="stats-jours"><option value="7">7 derniers jours</option><option value="30" selected>30 derniers jours</option><option value="90">90 derniers jours</option><option value="365">12 derniers mois</option></select></div>
+<button class="btn btn-rouge" type="submit">Afficher</button></form>
+<p class="stats-etat" id="stats-etat" role="status"></p>
+<label class="stats-option"><input type="checkbox" id="stats-compter"> Ne pas compter mes propres visites sur cet appareil (à cocher sur les postes et téléphones de LVA)</label>
+<div id="stats-resultats"></div></div></section>
+<script src="{r}assets/stats.js?v={VERSION}" defer></script>"""
+    page("stats/index.html", "Fréquentation · LVA Distribution", "Fréquentation du site, réservée à LVA.", corps, r, indexer=False)
 
 
 def page_404():
@@ -823,6 +837,7 @@ def ressources():
         os.makedirs(os.path.join(a, sous), exist_ok=True)
     shutil.copy(os.path.join(ICI, "src", "site.css"), os.path.join(a, "site.css"))
     shutil.copy(os.path.join(ICI, "src", "site.js"), os.path.join(a, "site.js"))
+    shutil.copy(os.path.join(ICI, "src", "stats.js"), os.path.join(a, "stats.js"))
     for f in os.listdir(os.path.join(ICI, "fonts")):
         shutil.copy(os.path.join(ICI, "fonts", f), os.path.join(a, "fonts", f))
     for f in ("logo-lva.png", "logo-lva-entete.png", "hero-farine.webp", "viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp", "partage.jpg", "favicon-32.png", "apple-touch-icon.png"):
@@ -846,6 +861,7 @@ if __name__ == "__main__":
     ressources()
     urls = [accueil(), produits(), livraison(), commander(), qui(), contact(), mentions()]
     redirection_video()  # ancienne adresse /video/ renvoyée vers l'accueil
+    page_stats()
     page_404()
     annexes(urls)
     print("Site construit :", len(urls), "pages dans", SORTIE, "| courriel :", "oui" if MAIL else "NON (variable LVA_EMAIL absente)")
