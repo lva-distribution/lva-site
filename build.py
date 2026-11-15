@@ -88,7 +88,6 @@ GAMMES = [  # (titre, image, texte, sous-familles)
     ("Ingrédients boulangerie-pâtisserie", None, "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs"]),
     ("Plats cuisinés", "plats.webp", "Plats prêts à réchauffer et spécialités pour gagner du temps en service, en cantine comme en restauration rapide.", ["Plats du terroir", "Plats à partager"]),
     ("Légumes et accompagnements", "accompagnements.webp", "Légumes et herbes, champignons, féculents, sauces et préparations, en conserve, surgelés ou prêts à l'emploi.", ["Légumes et herbes", "Champignons", "Féculents", "Sauces"]),
-    ("Produits de la mer", "mer.webp", "Poissons, crustacés et coquillages surgelés pour la restauration traditionnelle et collective.", ["Poissons", "Coquillages", "Crustacés"]),
     ("Desserts et glaces", "desserts.webp", "Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.", ["Yaourts", "Fromages blancs", "Compotes", "Glaces"]),
     ("Boissons", "boissons.webp", "Jus de fruits (bouteilles et BIB), eaux, cafés, jus pour cocktails, vins et bières pour les bars, hôtels et restaurants.", ["Jus de fruits", "Eaux", "Café", "Vins", "Bières"]),
     ("Épicerie, huiles et confitures", "huiles.webp", "Huiles, vinaigres, confitures, miels, pâtes à tartiner, gâteaux et confiseries : toute l'épicerie salée et sucrée.", ["Huiles", "Vinaigres", "Confitures", "Miels", "Confiseries"]),
@@ -336,7 +335,7 @@ def bande_marques(r):
 
 
 def bande_familles():
-    mots = ["Viandes", "Canard", "Fromages", "Crèmerie", "Charcuteries", "Boulangerie", "Surgelés", "Épicerie", "Boissons", "Desserts", "Produits de la mer", "Emballages"]
+    mots = ["Viandes", "Canard", "Fromages", "Crèmerie", "Charcuteries", "Boulangerie", "Surgelés", "Épicerie", "Boissons", "Desserts", "Emballages"]
     s = "".join(("<span class=\"creux\">" if i % 2 else "<span>") + f"{m}</span><i>✦</i>" for i, m in enumerate(mots))
     return f'<div class="defile" aria-hidden="true"><div class="defile-piste">{s}{s}</div></div>'
 
@@ -505,7 +504,7 @@ def produits():
 <section class="section">
   <div class="cadre">
     <span class="surtitre">Nos gammes</span>
-    <h2 class="titre">Quatorze univers, une seule commande</h2>
+    <h2 class="titre">Treize univers, une seule commande</h2>
     <p class="chapo">Le frais représente près de 70 % de nos ventes. Chaque gamme est présentée en détail, avec les conditionnements, dans notre <a href="{CATALOGUE}" rel="noopener">catalogue 2026 en ligne</a>.</p>
     <div class="gammes">{''.join(cartes)}</div>
   </div>
