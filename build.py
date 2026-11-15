@@ -24,6 +24,8 @@ APPLI = "https://onelink.to/w3tu83"
 APPSTORE = "https://apps.apple.com/fr/app/lva-distribution/id6754167450"
 PLAYSTORE = "https://play.google.com/store/apps/details?id=fr.lva.ecommerce"
 CATALOGUE = "https://lva-catalogue.lva-distribution.workers.dev/"
+HORAIRES = "du lundi au vendredi, de 8 h à 12 h et de 14 h à 17 h"
+HORAIRES_COURT = "lun.–ven. 8 h–12 h, 14 h–17 h"
 ADRESSE = ("Z.A. Les Vieilles Vignes, Le Causse", "46500", "Rignac")
 
 e = html.escape
@@ -116,7 +118,7 @@ GAMMES = [  # (titre, image, texte, sous-familles)
 ]
 
 FAQ_ACCUEIL = [
-    ("Qui peut commander chez LVA Distribution ?", "Tout le monde : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries, charcuteries et épiceries, mais aussi les particuliers. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact."),
+    ("Qui peut commander chez LVA Distribution ?", "Nous travaillons d'abord pour les professionnels : restaurants, boulangeries et pâtisseries, hôtels et campings, cafés et bars, collectivités, traiteurs, boucheries, charcuteries et épiceries. Les particuliers peuvent aussi commander : appelez-nous. L'ouverture d'un compte se fait sur simple demande, par téléphone au 05 65 10 00 20 ou par le formulaire de contact."),
     ("Dans quels secteurs livrez-vous ?", "Nous livrons depuis notre entrepôt de Rignac, à côté de Gramat : le Lot et au-delà (Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Biars-sur-Cère, Souillac, Figeac, Cahors…), ainsi que Brive-la-Gaillarde et la Corrèze."),
     ("Combien de fois par semaine livrez-vous ?", "Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre secteur : nous consulter."),
     ("Comment passer commande ?", "Trois possibilités : par téléphone avec notre équipe de télévente, sur la boutique en ligne boutique.lva-distribution.fr (24h/24), ou sur l'application LVA Distribution (iPhone et Android). Vos tarifs personnalisés s'appliquent partout."),
@@ -130,6 +132,7 @@ FAQ_LIVRAISON = [
     ("Puis-je être livré en saison seulement ?", "Oui. Beaucoup de nos clients travaillent avec le tourisme (Rocamadour, Padirac, vallée de la Dordogne) et ne commandent qu'une partie de l'année. Nous adaptons les passages à votre activité."),
 ]
 FAQ_COMMANDE = [
+    ("Quand peut-on commander par téléphone ?", "La prise de commande répond au 05 65 10 00 20 du lundi au vendredi, de 8 h à 12 h et de 14 h à 17 h. En dehors de ces horaires, la boutique en ligne et l'application restent ouvertes 24h/24."),
     ("Comment ouvrir un compte ?", "Remplissez le formulaire de contact ou appelez le 05 65 10 00 20. Un commercial vous rappelle, vous présente nos tarifs et ouvre votre compte. Vous recevez ensuite vos accès à la boutique en ligne et à l'application."),
     ("Les prix sont-ils affichés sur le site ?", "Nos tarifs sont personnalisés. Ils s'affichent sur la boutique en ligne et dans l'application une fois votre compte ouvert."),
     ("Puis-je commander le soir ou le week-end ?", "Oui, la boutique en ligne et l'application sont accessibles 24h/24 et 7j/7. La commande part avec la prochaine tournée de votre secteur."),
@@ -170,6 +173,7 @@ ORGA = {
     "logo": DOMAINE + "/assets/img/logo-lva.png",
     "image": DOMAINE + "/assets/img/partage.jpg",
     "telephone": TEL_INT,
+    "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": o, "closes": c} for o, c in (("08:00", "12:00"), ("14:00", "17:00"))],
     "address": {"@type": "PostalAddress", "streetAddress": ADRESSE[0], "postalCode": ADRESSE[1], "addressLocality": ADRESSE[2], "addressRegion": "Occitanie", "addressCountry": "FR"},
     "geo": {"@type": "GeoCoordinates", "latitude": 44.808, "longitude": 1.693},
     "areaServed": [{"@type": "City", "name": c} for c, _ in COMMUNES] + [{"@type": "AdministrativeArea", "name": n} for n in ("Lot", "Corrèze")],
@@ -239,7 +243,7 @@ def pied(r):
       </div>
       <div>
         <h2>Nous trouver</h2>
-        <address>LVA Distribution<br>{ADRESSE[0]}<br>{ADRESSE[1]} {ADRESSE[2]}<br><a href="tel:{TEL_INT}">{TEL}</a>{ligne_mail}</address>
+        <address>LVA Distribution<br>{ADRESSE[0]}<br>{ADRESSE[1]} {ADRESSE[2]}<br><a href="tel:{TEL_INT}">{TEL}</a>{ligne_mail}<br>Prise de commande : {HORAIRES_COURT}</address>
       </div>
       <div>
         <h2>Le site</h2>
@@ -379,7 +383,7 @@ def bande_familles():
 
 def canaux():
     return f"""<div class="canaux">
-  <article class="canal"><span class="num">01</span><h3>Par téléphone</h3><p>Notre équipe de télévente vous appelle au jour convenu pour prendre votre commande et vous signaler les promotions et nouveautés. Vous pouvez aussi nous appeler.</p><a class="lien" href="tel:{TEL_INT}"><svg class="ic"><use href="#i-tel"/></svg>{TEL}</a></article>
+  <article class="canal"><span class="num">01</span><h3>Par téléphone</h3><p>Notre équipe de télévente vous appelle au jour convenu pour prendre votre commande et vous signaler les promotions et nouveautés. Vous pouvez aussi nous appeler {HORAIRES}.</p><a class="lien" href="tel:{TEL_INT}"><svg class="ic"><use href="#i-tel"/></svg>{TEL}</a></article>
   <article class="canal"><span class="num">02</span><h3>Sur la boutique en ligne</h3><p>Commandez 24h/24 depuis votre ordinateur : cadencier, historique d'achats, promotions, suivi des commandes et des factures.</p><a class="lien" href="{BOUTIQUE}" rel="noopener">boutique.lva-distribution.fr <svg class="ic"><use href="#i-fleche"/></svg></a></article>
   <article class="canal"><span class="num">03</span><h3>Sur l'application</h3><p>Toute la boutique dans votre poche : recommandez vos articles habituels en un clic, depuis la cuisine ou la réserve.</p><div class="stores"><a href="{APPSTORE}" rel="noopener"><svg><use href="#i-apple"/></svg>App Store</a><a href="{PLAYSTORE}" rel="noopener"><svg><use href="#i-play"/></svg>Google Play</a></div></article>
 </div>"""
@@ -656,6 +660,8 @@ def qui():
       <h2 class="titre">Notre métier</h2>
       <p>LVA Distribution achète, stocke et livre plus de 4&nbsp;000 références alimentaires et non alimentaires pour les restaurants, boulangeries, hôtels, campings, cafés, collectivités, traiteurs et commerces de bouche.</p>
       <p>Le frais est notre cœur de métier : viandes et volailles, canard, crèmerie, fromages et charcuterie représentent près de 70 % de nos ventes. Nous complétons avec les surgelés, l'épicerie, les boissons et les emballages pour que nos clients puissent tout commander au même endroit.</p>
+      <h2 class="titre">Plus de 20 ans de métier</h2>
+      <p>Notre histoire a commencé il y a plus de 20 ans avec G2dis. LVA Distribution a pris la suite avec les mêmes fournisseurs et la même clientèle : beaucoup de restaurateurs, boulangers et collectivités du Lot et de la Corrèze travaillent avec nous depuis le début.</p>
       <h2 class="titre">Notre façon de travailler</h2>
       <p>Une équipe de télévente qui connaît chaque client, des commerciaux sur le terrain, un entrepôt à Rignac et nos propres camions frigorifiques. Nos clients commandent aussi en ligne, 24h/24, sur la boutique et l'application.</p>
       <p>Notre activité suit le rythme du territoire : Rocamadour, Padirac et la vallée de la Dordogne accueillent de nombreux visiteurs l'été, et nos tournées s'adaptent à la saison.</p>
@@ -671,6 +677,7 @@ def qui():
           <dt>Clients</dt><dd>Plus de 700 professionnels livrés</dd>
           <dt>Commande</dt><dd>Télévente, boutique en ligne, application</dd>
           <dt>Téléphone</dt><dd><a href="tel:{TEL_INT}">{TEL}</a></dd>
+          <dt>Prise de commande</dt><dd>{HORAIRES_COURT}</dd>
           {ligne_mail}
         </dl>
       </div>
@@ -698,7 +705,7 @@ def contact():
       <span class="surtitre">Nous joindre</span>
       <h2 class="titre">Parlons de<br>votre cuisine</h2>
       <ul class="coord">
-        <li><svg class="ic"><use href="#i-tel"/></svg><div><small>Téléphone</small><a href="tel:{TEL_INT}">{TEL}</a></div></li>
+        <li><svg class="ic"><use href="#i-tel"/></svg><div><small>Téléphone · prise de commande {HORAIRES_COURT}</small><a href="tel:{TEL_INT}">{TEL}</a></div></li>
         {ligne_mail}
         <li><svg class="ic"><use href="#i-lieu"/></svg><div><small>Entrepôt</small><address><a href="https://www.google.com/maps/search/?api=1&amp;query=LVA+Distribution+Rignac+46500" rel="noopener">{ADRESSE[0]}<br>{ADRESSE[1]} {ADRESSE[2]}</a></address></div></li>
         <li><svg class="ic"><use href="#i-panier"/></svg><div><small>Déjà client</small><a href="{BOUTIQUE}" rel="noopener">Boutique en ligne</a></div></li>
@@ -775,11 +782,11 @@ def annexes(urls):
     with open(os.path.join(SORTIE, "llms.txt"), "w", encoding="utf-8", newline="\n") as f:
         f.write(f"""# LVA Distribution
 
-> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine.
+> LVA Distribution est un grossiste alimentaire installé à Rignac, à côté de Gramat, dans le Lot (46500, Occitanie). Il fournit plus de 700 professionnels de la restauration et des métiers de bouche du Lot et de la Corrèze : restaurants, boulangeries-pâtisseries, hôtels et campings, cafés, collectivités, traiteurs, boucheries et épiceries. Plus de 4 000 références en frais, surgelé, épicerie, boissons et emballages, livrées en camions frigorifiques plusieurs fois par semaine. Professionnels en priorité ; les particuliers peuvent aussi commander.
 
 ## Coordonnées
 - Adresse : {ADRESSE[0]}, {ADRESSE[1]} {ADRESSE[2]}, France
-- Téléphone : {TEL}{ligne_mail}
+- Téléphone : {TEL} (prise de commande {HORAIRES}){ligne_mail}
 - Boutique en ligne (clients) : {BOUTIQUE}
 - Application mobile : {APPLI}
 - Catalogue 2026 : {CATALOGUE}
