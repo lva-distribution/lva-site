@@ -222,12 +222,15 @@ def pied(r):
 </footer>"""
 
 
-def page(chemin_fichier, titre, description, corps, r, actif=None, schemas=(), accueil=False, indexer=True):
-    url = DOMAINE + "/" + ("" if chemin_fichier == "index.html" else chemin_fichier.replace("index.html", ""))
+def page(chemin_fichier, titre, description, corps, r, actif=None, schemas=(), accueil=False, indexer=True, canonique=None):
+    url = canonique or (DOMAINE + "/" + ("" if chemin_fichier == "index.html" else chemin_fichier.replace("index.html", "")))
     nav = "".join(f'<a href="{r}{u}"' + (' aria-current="page"' if u == actif else "") + f">{e(n)}</a>" for u, n in NAV)
     site = {"@type": "WebSite", "@id": DOMAINE + "/#site", "url": DOMAINE + "/", "name": "LVA Distribution", "inLanguage": "fr-FR", "publisher": {"@id": ORGA_ID}}
     webpage = {"@type": "WebPage", "@id": url + "#page", "url": url, "name": titre, "description": description, "inLanguage": "fr-FR", "isPartOf": {"@id": DOMAINE + "/#site"}, "about": {"@id": ORGA_ID}, "dateModified": AUJ}
-    precharge = f'<link rel="preload" href="{r}assets/img/hero-farine.webp" as="image" fetchpriority="high">\n' if accueil else ""
+    precharge = ""
+    if accueil:
+        image_hero = "video/hero-cuisine.jpg" if chemin_fichier.startswith("video/") else "img/hero-farine.webp"
+        precharge = f'<link rel="preload" href="{r}assets/{image_hero}" as="image" fetchpriority="high">' + "\n"
     robots = "index, follow, max-image-preview:large" if indexer else "noindex"
     doc = f"""<!doctype html>
 <html lang="fr">
@@ -379,8 +382,8 @@ def tete_page(r, chemin, surtitre, h1, chapo, photo=None):
 
 
 # ---------------------------------------------------------------- pages
-def accueil():
-    r = ""
+def accueil(variante="photo"):
+    r = "" if variante == "photo" else "../"
     publics = [
         ("i-resto", "Restaurants", "Viandes, volailles, fromages, crèmerie, plats cuisinés et desserts."),
         ("i-pain", "Boulangeries et pâtisseries", "Beurres, farines, ingrédients techniques, viennoiseries et prêts à garnir."),
@@ -390,15 +393,21 @@ def accueil():
         ("i-toque", "Traiteurs, boucheries, épiceries", "Charcuteries, fromages à la coupe, crèmerie, plats cuisinés et emballages."),
     ]
     pub = "".join(f'<div class="public"><svg class="ic"><use href="#{i}"/></svg><h3>{e(t)}</h3><p>{e(p)}</p></div>' for i, t, p in publics)
+    if variante == "video":
+        entree = f"""<section class="une une-video" id="accueil">
+  <div class="une-film" data-parallaxe><video autoplay muted loop playsinline preload="auto" poster="{r}assets/video/hero-cuisine.jpg" aria-hidden="true"><source src="{r}assets/video/hero-cuisine.mp4" type="video/mp4"></video></div>
+"""
+    else:
+        entree = f"""<section class="une" id="accueil">
+  <div class="une-photo" data-parallaxe><img src="{r}assets/img/hero-farine.webp" alt="Les mains d'un cuisinier laissent tomber de la farine sur fond noir" width="1400" height="836" fetchpriority="high"></div>
+"""
     corps = f"""
-<section class="une" id="accueil">
-  <div class="une-photo" data-parallaxe><img src="assets/img/hero-farine.webp" alt="Les mains d'un cuisinier laissent tomber de la farine sur fond noir" width="1400" height="836" fetchpriority="high"></div>
-  <div class="cadre une-texte">
+{entree}  <div class="cadre une-texte">
     <span class="surtitre">Grossiste alimentaire · Lot &amp; Corrèze</span>
     <h1 class="titre"><span class="masque">LVA Distribution, grossiste alimentaire à Rignac dans le Lot : </span><span class="ligne"><span style="--d:.35s">Distributeur</span></span><span class="ligne rouge"><span style="--d:.5s">de saveurs</span></span></h1>
     <p class="accroche">Plus de 4&nbsp;000 références en frais, surgelé et épicerie pour les restaurants, hôtels, boulangeries et collectivités du Lot et de la Corrèze. Livrées dans votre cuisine, par nos propres camions.</p>
     <div class="actions">
-      <a class="btn btn-rouge" href="contact/">Devenir client <svg class="ic"><use href="#i-fleche"/></svg></a>
+      <a class="btn btn-rouge" href="{r}contact/">Devenir client <svg class="ic"><use href="#i-fleche"/></svg></a>
       <a class="btn btn-ligne" href="{CATALOGUE}" rel="noopener"><svg class="ic"><use href="#i-livre"/></svg>Feuilleter le catalogue</a>
     </div>
   </div>
@@ -426,14 +435,14 @@ def accueil():
     <h2 class="titre">Tout pour votre cuisine</h2>
     <p class="chapo">Du frais au surgelé, de l'épicerie aux emballages : une seule commande, une seule livraison. Le frais est notre cœur de métier.</p>
     <div class="mosaique">
-      <figure class="tuile"><img src="assets/img/viandes.webp" alt="Pièces de bœuf grillées sur une ardoise" loading="lazy" width="700" height="700"><figcaption><b>Viandes</b><span>Bœuf, veau, agneau, porc, volaille</span></figcaption></figure>
-      <figure class="tuile"><img src="assets/img/fromages.webp" alt="Plateau de fromages et verre de vin rouge" loading="lazy" width="700" height="700"><figcaption><b>Fromages</b><span>Coupe, portions, râpés, Rocamadour AOP</span></figcaption></figure>
-      <figure class="tuile"><img src="assets/img/charcuteries.webp" alt="Tranches de jambon et de lard sur une planche" loading="lazy" width="700" height="700"><figcaption><b>Charcuteries</b><span>Tranchées et à la coupe</span></figcaption></figure>
-      <figure class="tuile"><img src="assets/img/boulangerie.webp" alt="Croissants dorés sur une plaque" loading="lazy" width="540" height="465"><figcaption><b>Boulangerie</b><span>Pains, viennoiseries, prêts à garnir</span></figcaption></figure>
-      <figure class="tuile"><img src="assets/img/bandeau-droite.webp" alt="Magret de canard tranché et grains de poivre" loading="lazy" width="378" height="1350" style="object-position:50% 70%"><figcaption><b>Canard</b><span>Magrets, cuisses, confits</span></figcaption></figure>
+      <figure class="tuile"><img src="{r}assets/img/viandes.webp" alt="Pièces de bœuf grillées sur une ardoise" loading="lazy" width="700" height="700"><figcaption><b>Viandes</b><span>Bœuf, veau, agneau, porc, volaille</span></figcaption></figure>
+      <figure class="tuile"><img src="{r}assets/img/fromages.webp" alt="Plateau de fromages et verre de vin rouge" loading="lazy" width="700" height="700"><figcaption><b>Fromages</b><span>Coupe, portions, râpés, Rocamadour AOP</span></figcaption></figure>
+      <figure class="tuile"><img src="{r}assets/img/charcuteries.webp" alt="Tranches de jambon et de lard sur une planche" loading="lazy" width="700" height="700"><figcaption><b>Charcuteries</b><span>Tranchées et à la coupe</span></figcaption></figure>
+      <figure class="tuile"><img src="{r}assets/img/boulangerie.webp" alt="Croissants dorés sur une plaque" loading="lazy" width="540" height="465"><figcaption><b>Boulangerie</b><span>Pains, viennoiseries, prêts à garnir</span></figcaption></figure>
+      <figure class="tuile"><img src="{r}assets/img/bandeau-droite.webp" alt="Magret de canard tranché et grains de poivre" loading="lazy" width="378" height="1350" style="object-position:50% 70%"><figcaption><b>Canard</b><span>Magrets, cuisses, confits</span></figcaption></figure>
     </div>
     <div class="pied-section">
-      <a class="btn btn-rouge" href="produits/">Voir toutes nos gammes <svg class="ic"><use href="#i-fleche"/></svg></a>
+      <a class="btn btn-rouge" href="{r}produits/">Voir toutes nos gammes <svg class="ic"><use href="#i-fleche"/></svg></a>
       <a class="btn btn-ligne" href="{CATALOGUE}" rel="noopener"><svg class="ic"><use href="#i-livre"/></svg>Catalogue 2026</a>
     </div>
   </div>
@@ -460,7 +469,7 @@ def accueil():
         <li><b>Brive et la Corrèze</b><span>Brive-la-Gaillarde et son bassin.</span></li>
         <li><b>Dordogne et Aveyron</b><span>Les communes en limite de zone : appelez-nous, on regarde ensemble.</span></li>
       </ul>
-      <p style="margin-top:30px"><a class="btn btn-ligne" href="livraison/">Tout sur la livraison <svg class="ic"><use href="#i-fleche"/></svg></a></p>
+      <p style="margin-top:30px"><a class="btn btn-ligne" href="{r}livraison/">Tout sur la livraison <svg class="ic"><use href="#i-fleche"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -473,9 +482,10 @@ def accueil():
 </section>
 {appel(r)}
 """
-    return page("index.html", "LVA Distribution · Grossiste alimentaire pour professionnels, Lot et Corrèze",
+    fichier = "index.html" if variante == "photo" else "video/index.html"
+    return page(fichier, "LVA Distribution · Grossiste alimentaire pour professionnels, Lot et Corrèze",
                 "Grossiste alimentaire à Rignac (Lot) : plus de 4 000 références en frais, surgelé et épicerie pour restaurants, boulangeries, hôtels et collectivités. Livraison en camions frigorifiques dans le Lot et en Corrèze.",
-                corps, r, schemas=[faq_ld(FAQ_ACCUEIL)], accueil=True)
+                corps, r, schemas=[faq_ld(FAQ_ACCUEIL)], accueil=True, indexer=(variante == "photo"), canonique=DOMAINE + "/")
 
 
 def produits():
@@ -689,7 +699,7 @@ def mentions():
 <h2 class="titre">Données personnelles et cookies</h2>
 <p>Ce site ne dépose aucun cookie et ne mesure pas l'audience. Le formulaire « Devenir client » n'enregistre rien : il prépare un courriel dans votre propre messagerie. Les informations que vous nous envoyez servent uniquement à vous recontacter et à ouvrir votre compte client. Vous pouvez demander leur consultation, leur rectification ou leur suppression en nous écrivant.</p>
 <h2 class="titre">Marques et photographies</h2>
-<p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026.</p>
+<p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026. Vidéo d'accueil : extraits de la banque Mixkit, sous licence gratuite « Stock Video Free License ».</p>
 </div></section>
 """
     return page("mentions-legales/index.html", "Mentions légales · LVA Distribution", "Mentions légales du site de LVA Distribution, grossiste alimentaire à Rignac (Lot).", corps, r, schemas=[ariane_ld(chemin)])
@@ -766,6 +776,9 @@ def ressources():
         shutil.copy(os.path.join(ICI, "fonts", f), os.path.join(a, "fonts", f))
     for f in ("logo-lva.png", "hero-farine.webp", "viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp", "partage.jpg", "favicon-32.png", "apple-touch-icon.png"):
         shutil.copy(os.path.join(ICI, "img", f), os.path.join(a, "img", f))
+    os.makedirs(os.path.join(a, "video"), exist_ok=True)
+    for f in os.listdir(os.path.join(ICI, "video")):
+        shutil.copy(os.path.join(ICI, "video", f), os.path.join(a, "video", f))
     for d in ("marques", "univers"):
         for f in os.listdir(os.path.join(ICI, "img", d)):
             shutil.copy(os.path.join(ICI, "img", d, f), os.path.join(a, "img", d, f))
@@ -781,6 +794,7 @@ if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
     ressources()
     urls = [accueil(), produits(), livraison(), commander(), qui(), contact(), mentions()]
+    accueil("video")  # variante à comparer, non indexée
     page_404()
     annexes(urls)
     print("Site construit :", len(urls), "pages dans", SORTIE, "| courriel :", "oui" if MAIL else "NON (variable LVA_EMAIL absente)")

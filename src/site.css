@@ -109,6 +109,16 @@ svg.ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: ro
   .une .surtitre::before, .une .surtitre::after { display: none; }
 }
 
+/* Accueil, variante vidéo */
+.une-video { min-height: 100svh; display: flex; align-items: flex-end; }
+.une-film { position: absolute; inset: 0; z-index: -2; overflow: hidden; will-change: transform; }
+.une-film video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.une-video::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(70% 60% at 50% 100%, rgba(163,34,57,.28), transparent 70%), linear-gradient(180deg, rgba(14,14,14,.55) 0%, rgba(14,14,14,.25) 35%, rgba(14,14,14,.75) 72%, var(--noir) 100%); }
+.une-video .une-texte { margin-top: 0; padding-top: 180px; }
+.js .une-film video { animation: recul 2.4s cubic-bezier(.2,.75,.15,1) both; }
+@media (max-width: 600px) { .une-video { min-height: 88svh; } .une-video .une-texte { margin-top: 0; padding-top: 150px; } }
+
 /* Haut des pages intérieures */
 .tete-page { position: relative; padding: calc(116px + clamp(48px, 7vw, 96px)) 0 clamp(48px, 6vw, 80px); background: radial-gradient(80% 120% at 85% 0%, rgba(163,34,57,.28), transparent 60%), var(--noir); border-bottom: 1px solid var(--trait); overflow: hidden; }
 .tete-page.avec-photo::after { content: ""; position: absolute; inset: 0 0 0 auto; width: min(46vw, 640px); background: var(--photo) center / cover no-repeat; -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%); mask-image: linear-gradient(90deg, transparent, #000 60%); opacity: .55; z-index: 0; }
@@ -326,7 +336,7 @@ svg.ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: ro
 .js .reveal.vu { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .reveal, .js .une .surtitre, .js .une .accroche, .js .une .actions, .js .une-photo img { opacity: 1; transform: none; animation: none; }
+  .js .reveal, .js .une .surtitre, .js .une .accroche, .js .une .actions, .js .une-photo img, .js .une-film video { opacity: 1; transform: none; animation: none; }
   .js .une h1 .ligne > span { transform: none; animation: none; }
   .defile-piste, .marques-piste, .carte .halo { animation: none; }
 }

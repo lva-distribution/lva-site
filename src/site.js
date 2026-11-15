@@ -16,6 +16,13 @@
     a.addEventListener('click', function () { if (entete.classList.contains('ouvert')) burger.click(); });
   });
 
+  // Vidéo d'accueil : arrêtée si l'utilisateur préfère moins d'animations ; relancée si le navigateur l'a bloquée
+  var film = document.querySelector('.une-film video');
+  if (film) {
+    if (calme) { film.removeAttribute('autoplay'); film.pause(); }
+    else { var essai = film.play(); if (essai && essai.catch) essai.catch(function () {}); }
+  }
+
   // Barre de lecture et parallaxe
   var barre = document.createElement('div'); barre.className = 'progression'; document.body.appendChild(barre);
   var photo = document.querySelector('[data-parallaxe]');
