@@ -93,6 +93,55 @@
     });
   });
 
+  // Bandes qui défilent : avance toute seule, se met en pause au survol ou quand on la touche,
+  // se fait glisser au doigt (défilement natif) ou à la souris, et repart 3 s après
+  function bandeDefilante(fenetre, vitesse) {
+    var piste = fenetre.firstElementChild;
+    if (!piste || piste.children.length < 2) return;
+    var n = piste.children.length / 2, x = 0, avant = null, reprise = 0, survol = false, doigt = false;
+    var glisse = null, ecrit = 0;   // ecrit = dernière position posée par le script
+    function moitie() { return piste.children[n].offsetLeft - piste.children[0].offsetLeft; }
+    function boucler() { var m = moitie(); if (m > 0) { while (x >= m) x -= m; while (x < 0) x += m; } }
+    function poser() { fenetre.scrollLeft = x; ecrit = fenetre.scrollLeft; }
+    function main() {   // la personne a fait glisser la bande : on reprend sa position
+      if (Math.abs(fenetre.scrollLeft - ecrit) > 2) { x = fenetre.scrollLeft; ecrit = x; reprise = Date.now() + 3000; return true; }
+      return false;
+    }
+    function tic(t) {
+      var dt = avant ? Math.min(t - avant, 100) / 1000 : 0; avant = t;
+      if (!glisse) main();
+      var arretee = doc.classList.contains('anim-arretees') || calme;
+      if (!arretee && !survol && !doigt && !glisse && Date.now() > reprise) {
+        x += vitesse * dt; boucler(); poser();
+      }
+      requestAnimationFrame(tic);
+    }
+    fenetre.addEventListener('scroll', function () {
+      if (!glisse && main()) {
+        var m = moitie(); if (m > 0 && (x >= m || x <= 0)) { boucler(); poser(); }
+      }
+    }, { passive: true });
+    fenetre.addEventListener('mouseenter', function () { survol = true; });
+    fenetre.addEventListener('mouseleave', function () { survol = false; });
+    fenetre.addEventListener('touchstart', function () { doigt = true; }, { passive: true });
+    fenetre.addEventListener('touchend', function () { doigt = false; reprise = Date.now() + 3000; }, { passive: true });
+    fenetre.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      glisse = { depart: e.clientX, x: x }; fenetre.classList.add('saisi');
+      fenetre.setPointerCapture(e.pointerId);
+    });
+    fenetre.addEventListener('pointermove', function (e) {
+      if (!glisse) return;
+      x = glisse.x - (e.clientX - glisse.depart); boucler(); poser();
+    });
+    function lacher() { if (glisse) { glisse = null; fenetre.classList.remove('saisi'); reprise = Date.now() + 3000; } }
+    fenetre.addEventListener('pointerup', lacher);
+    fenetre.addEventListener('pointercancel', lacher);
+    requestAnimationFrame(tic);
+  }
+  document.querySelectorAll('.marques-fenetre').forEach(function (f) { bandeDefilante(f, 45); });
+  document.querySelectorAll('.defile').forEach(function (f) { bandeDefilante(f, 60); });
+
   // Bouton pause : arrête la vidéo et les bandes qui défilent
   var pause = document.querySelector('.pause-anim');
   if (pause) {
