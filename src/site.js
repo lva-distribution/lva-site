@@ -108,7 +108,7 @@
       var v = function (n) { return form.elements[n].value.trim(); };
       var corps = ['Bonjour,', '', 'Je souhaite devenir client de LVA Distribution.', '',
         'Nom : ' + v('nom'), 'Établissement : ' + v('etablissement'), 'Activité : ' + v('activite'),
-        'Commune : ' + (v('commune') || 'non précisée'), 'Téléphone : ' + v('telephone'), '', v('message'), '', 'Merci de me recontacter.'].join('\n');
+        'Ville : ' + (v('commune') || 'non précisée'), 'Téléphone : ' + v('telephone'), '', v('message'), '', 'Merci de me recontacter.'].join('\n');
       window.location.href = 'mailto:lva@lva-distribution.fr?subject=' + encodeURIComponent('Demande d\'ouverture de compte : ' + v('etablissement')) + '&body=' + encodeURIComponent(corps);
       note.textContent = 'Votre messagerie s\'ouvre avec la demande prête : il ne reste qu\'à l\'envoyer. Rien ne s\'ouvre ? Appelez le 05 65 10 00 20.';
     });
