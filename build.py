@@ -402,12 +402,14 @@ def canaux():
 def formulaire():
     return """<form class="formulaire" id="formulaire" novalidate>
   <h2>Devenir client</h2>
-  <p>Votre demande part dans votre messagerie, adressée à notre équipe. Un commercial vous rappelle.</p>
+  <p>Votre demande arrive directement à notre équipe. Un commercial vous rappelle.</p>
   <div class="champs">
     <div class="champ"><label for="f-nom">Nom et prénom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
     <div class="champ"><label for="f-etab">Établissement</label><input id="f-etab" name="etablissement" autocomplete="organization" required></div>
     <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></div>
     <div class="champ"><label for="f-ville">Ville</label><input id="f-ville" name="commune" autocomplete="address-level2"></div>
+    <div class="champ large"><label for="f-mail">Courriel (facultatif)</label><input id="f-mail" name="courriel" type="email" autocomplete="email" inputmode="email"></div>
+    <div class="champ piege" aria-hidden="true"><label for="f-site">Site web</label><input id="f-site" name="site_web" tabindex="-1" autocomplete="off"></div>
     <div class="champ large"><label for="f-type">Votre activité</label><select id="f-type" name="activite"><option>Restaurant</option><option>Boulangerie ou pâtisserie</option><option>Hôtel ou camping</option><option>Café, bar ou snacking</option><option>Collectivité</option><option>Traiteur, boucherie ou épicerie</option><option>Autre</option></select></div>
     <div class="champ large"><label for="f-msg">Votre message (facultatif)</label><textarea id="f-msg" name="message" placeholder="Date d'ouverture, produits recherchés, jours de livraison souhaités…"></textarea></div>
   </div>
@@ -753,7 +755,7 @@ def mentions():
 <h2 class="titre">Hébergement</h2>
 <p>GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
 <h2 class="titre">Données personnelles et cookies</h2>
-<p>Ce site ne dépose aucun cookie. Il mesure sa fréquentation de façon anonyme (pages vues, provenance, type d'appareil, clics sur le téléphone ou la boutique), sans cookie et sans conserver d'adresse IP : un visiteur n'est reconnu que le jour même, par une empreinte non réversible renouvelée chaque jour. Le formulaire « Devenir client » n'enregistre rien : il prépare un courriel dans votre propre messagerie. Les informations que vous nous envoyez servent uniquement à vous recontacter et à ouvrir votre compte client. Vous pouvez demander leur consultation, leur rectification ou leur suppression en nous écrivant.</p>
+<p>Ce site ne dépose aucun cookie. Il mesure sa fréquentation de façon anonyme (pages vues, provenance, type d'appareil, clics sur le téléphone ou la boutique), sans cookie et sans conserver d'adresse IP : un visiteur n'est reconnu que le jour même, par une empreinte non réversible renouvelée chaque jour. Les informations envoyées par le formulaire « Devenir client » sont transmises à notre équipe par courriel et conservées dans notre outil de suivi le temps de traiter votre demande ; elles servent uniquement à vous recontacter et à ouvrir votre compte client. Vous pouvez demander leur consultation, leur rectification ou leur suppression en nous écrivant.</p>
 <h2 class="titre">Marques et photographies</h2>
 <p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026 et banque Pexels (licence gratuite). Vidéo d'accueil : extraits des banques Pexels (licence Pexels) et Mixkit (« Stock Video Free License »), gratuites pour un usage commercial.</p>
 </div></section>
