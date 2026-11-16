@@ -97,7 +97,7 @@ COMMUNES_CARTE = ["Rocamadour", "Gramat", "Padirac", "Lacave", "Martel", "Saint-
 MARQUES = [  # (nom, fichier logo ou None, fond sombre)
     ("Rougié", "rougie.svg", False), ("Elle & Vire", "elle-et-vire.webp", False), ("Président", "president.png", False),
     ("Isigny Sainte-Mère", "isigny-sainte-mere.webp", False), ("Candia", "candia.png", False), ("Bridor", "bridor.jpg", True),
-    ("Vandemoortele", None, False), ("Debic", None, False), ("Callebaut", "callebaut.svg", False),
+    ("Vandemoortele", "vandemoortele.png", False), ("Debic", "debic.svg", False), ("Callebaut", "callebaut.svg", False),
     ("Andros", "andros.png", False), ("Jean Floc'h", "jean-floch.webp", False),
     ("Louis François", None, False), ("Mallard Ferrière", "mallard-ferriere.png", False),
 ]
@@ -371,7 +371,7 @@ def bande_marques(r):
             masque = ' aria-hidden="true"' if cache else ""
             import re as _re
             dim = _re.findall(r"\d+", dimensions("marques/" + f)) if f else []
-            large = " large" if len(dim) == 2 and int(dim[0]) > 4 * int(dim[1]) else ""  # logo tout en longueur (nom écrit)
+            large = " large" if len(dim) == 2 and int(dim[0]) > 6 * int(dim[1]) else ""  # logo tout en longueur (nom écrit)
             out.append(f'<div class="logo-marque{" sombre" if sombre else ""}{large}"{masque}>{contenu}</div>')
         return "".join(out)
     return f"""<section class="marques" aria-labelledby="titre-marques">
