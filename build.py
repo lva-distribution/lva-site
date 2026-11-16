@@ -99,6 +99,7 @@ MARQUES = [  # (nom, fichier logo ou None, fond sombre)
     ("Isigny Sainte-Mère", "isigny-sainte-mere.webp", False), ("Candia", "candia.png", False), ("Bridor", "bridor.jpg", True),
     ("Vandemoortele", None, False), ("Debic", None, False), ("Callebaut", "callebaut.svg", False),
     ("Andros", "andros.png", False), ("Jean Floc'h", "jean-floch.webp", False),
+    ("Louis François", None, False), ("Mallard Ferrière", "mallard-ferriere.png", False),
 ]
 
 PHOTOS_RACINE = {"viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp"}
@@ -109,7 +110,8 @@ GAMMES = [  # (titre, image, texte, sous-familles)
     ("Fromages", "fromages.webp", "Fromages à la coupe, en portions, râpés et tranchés, dont le Rocamadour AOP et les grands classiques pour la cuisine, le plateau et la pizza.", ["À la coupe", "Portions", "Râpés", "Tranchés", "Rocamadour AOP"]),
     ("Charcuteries", "charcuteries.webp", "Jambons, lards, saucissons et spécialités, tranchés ou à la coupe, pour la cuisine, le snacking et les planches.", ["Charcuterie tranchée", "Charcuterie à la coupe", "Saucisses"]),
     ("Boulangerie et viennoiserie", "boulangerie.webp", "Pains précuits, viennoiseries crues ou cuites, pâtes feuilletées et prêts à garnir, avec des marques comme Bridor et Vandemoortele.", ["Pains", "Viennoiseries", "Pâtes feuilletées", "Prêts à garnir"]),
-    ("Ingrédients boulangerie-pâtisserie", "ingredients-pistoles.webp", "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs"]),
+    ("Ingrédients boulangerie-pâtisserie", "ingredients-pistoles.webp", "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers, ainsi que les gélatines, pectines et texturants Louis François.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs", "Gélatines et pectines"]),
+    ("Matériel de cuisine et de pâtisserie", "materiel-douilles.webp", "Le matériel Mallard Ferrière pour les pâtissiers, boulangers et cuisiniers : batteurs-mélangeurs, fouets, douilles et poches, moules, cercles et plaques, couteaux, poêles et petits ustensiles. Vous avez repéré un article sur mallardferriere.com ? Donnez-nous sa référence, nous vous indiquons le prix.", ["Batteurs", "Fouets", "Douilles et poches", "Moules", "Cercles et plaques", "Couteaux", "Poêles"]),
     ("Plats cuisinés", "plats.webp", "Plats prêts à réchauffer et spécialités pour gagner du temps en service, en cantine comme en restauration rapide.", ["Plats du terroir", "Plats à partager"]),
     ("Légumes et accompagnements", "accompagnements.webp", "Légumes et herbes, champignons, féculents, sauces et préparations, en conserve, surgelés ou prêts à l'emploi.", ["Légumes et herbes", "Champignons", "Féculents", "Sauces"]),
     ("Desserts et glaces", "desserts-glaces.webp", "Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.", ["Yaourts", "Fromages blancs", "Compotes", "Glaces"]),
@@ -123,8 +125,8 @@ FAQ_ACCUEIL = [
     ("Dans quels secteurs livrez-vous ?", "Nous livrons depuis notre entrepôt de Rignac, à côté de Gramat : le Lot et au-delà (Rocamadour, Gramat, Padirac, Saint-Céré, Martel, Bretenoux, Biars-sur-Cère, Souillac, Figeac, Cahors…), ainsi que Brive-la-Gaillarde et la Corrèze."),
     ("Combien de fois par semaine livrez-vous ?", "Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre secteur : nous consulter."),
     ("Comment passer commande ?", "Trois possibilités : par téléphone avec notre équipe de télévente, sur la boutique en ligne boutique.lva-distribution.fr (24h/24), ou sur l'application LVA Distribution (iPhone et Android). Vos tarifs personnalisés s'appliquent partout."),
-    ("Quels produits proposez-vous ?", "Plus de 4 000 références : viandes et volailles, canard, crèmerie, fromages, charcuterie, boulangerie et viennoiserie, surgelés, épicerie, boissons, emballages et produits d'hygiène."),
-    ("Quelles marques distribuez-vous ?", "Nous travaillons notamment avec Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Debic, Bridor, Vandemoortele, Callebaut, Andros et Jean Floc'h, ainsi qu'avec des producteurs régionaux comme le Rocamadour AOP."),
+    ("Quels produits proposez-vous ?", "Plus de 4 000 références : viandes et volailles, canard, crèmerie, fromages, charcuterie, boulangerie et viennoiserie, surgelés, épicerie, boissons, emballages et produits d'hygiène, ainsi que le matériel de cuisine et de pâtisserie."),
+    ("Quelles marques distribuez-vous ?", "Nous travaillons notamment avec Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Debic, Bridor, Vandemoortele, Callebaut, Andros, Jean Floc'h et Louis François, ainsi qu'avec Mallard Ferrière pour le matériel et des producteurs régionaux comme le Rocamadour AOP."),
 ]
 FAQ_LIVRAISON = [
     ("Livrez-vous chez moi ?", "Si vous êtes dans le Lot, à Brive ou en Corrèze, très probablement. Sinon, appelez-nous au 05 65 10 00 20 : nous regardons ensemble la tournée la plus proche."),
@@ -377,7 +379,7 @@ def bande_marques(r):
 
 
 def bande_familles():
-    mots = ["Viandes", "Canard", "Fromages", "Crèmerie", "Charcuteries", "Boulangerie", "Surgelés", "Épicerie", "Boissons", "Desserts", "Emballages"]
+    mots = ["Viandes", "Canard", "Fromages", "Crèmerie", "Charcuteries", "Boulangerie", "Surgelés", "Épicerie", "Boissons", "Desserts", "Matériel", "Emballages"]
     s = "".join(("<span class=\"creux\">" if i % 2 else "<span>") + f"{m}</span><i>✦</i>" for i, m in enumerate(mots))
     return f'<div class="defile" aria-hidden="true"><div class="defile-piste">{s}{s}</div></div>'
 
@@ -546,11 +548,11 @@ def produits():
         cartes.append(f'<article class="gamme">{vis}<div class="corps"><h2>{e(titre)}</h2><p>{e(texte)}</p><ul>{puces}</ul></div></article>')
     catalogue = {"@type": "OfferCatalog", "name": "Gammes LVA Distribution", "itemListElement": [{"@type": "OfferCatalog", "name": t, "description": tx} for t, _, tx, _ in GAMMES]}
     corps = f"""
-{tete_page(r, chemin, "Nos produits", "Plus de 4 000 références pour les professionnels", "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, épicerie, boissons et emballages : LVA Distribution réunit tout ce dont une cuisine professionnelle a besoin, livré par une seule tournée.", "fromages.webp")}
+{tete_page(r, chemin, "Nos produits", "Plus de 4 000 références pour les professionnels", "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, épicerie, boissons, emballages et matériel : LVA Distribution réunit tout ce dont une cuisine professionnelle a besoin, livré par une seule tournée.", "fromages.webp")}
 <section class="section">
   <div class="cadre">
     <span class="surtitre">Nos gammes</span>
-    <h2 class="titre">Treize univers, une seule commande</h2>
+    <h2 class="titre">Quatorze univers, une seule commande</h2>
     <p class="chapo">Le frais représente près de 70 % de nos ventes. Chaque gamme est présentée en détail, avec les conditionnements, dans notre <a href="{CATALOGUE}" rel="noopener">catalogue 2026 en ligne</a>.</p>
     <div class="gammes">{''.join(cartes)}</div>
   </div>
@@ -559,7 +561,7 @@ def produits():
 <section class="section section-fonce">
   <div class="cadre etroit prose">
     <h2 class="titre">Des grandes marques et des produits du terroir</h2>
-    <p>LVA Distribution travaille avec les grandes marques de la restauration hors domicile : Rougié pour le canard ; Elle &amp; Vire, Président, Isigny Sainte-Mère, Candia et Debic pour la crèmerie ; Bridor et Vandemoortele pour la boulangerie ; Callebaut pour le chocolat ; Andros pour les fruits ; Jean Floc'h pour la charcuterie.</p>
+    <p>LVA Distribution travaille avec les grandes marques de la restauration hors domicile : Rougié pour le canard ; Elle &amp; Vire, Président, Isigny Sainte-Mère, Candia et Debic pour la crèmerie ; Bridor et Vandemoortele pour la boulangerie ; Callebaut pour le chocolat ; Louis François pour les ingrédients de pâtisserie ; Andros pour les fruits ; Jean Floc'h pour la charcuterie ; Mallard Ferrière pour le matériel de cuisine et de pâtisserie.</p>
     <p>Nous distribuons aussi des produits de la région, comme le Rocamadour AOP, l'un des fromages les plus demandés par les restaurants du Lot.</p>
     <p>Vous ne trouvez pas une référence ? Demandez-la à votre interlocuteur ou au <a href="tel:{TEL_INT}">{TEL}</a> : nous pouvons souvent la commander pour vous.</p>
   </div>
