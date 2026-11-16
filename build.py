@@ -99,7 +99,10 @@ MARQUES = [  # (nom, fichier logo ou None, fond sombre)
     ("Isigny Sainte-Mère", "isigny-sainte-mere.webp", False), ("Candia", "candia.png", False), ("Bridor", "bridor.jpg", True),
     ("Vandemoortele", "vandemoortele.png", False), ("Debic", "debic.svg", False), ("Callebaut", "callebaut.svg", False),
     ("Andros", "andros.png", False), ("Jean Floc'h", "jean-floch.webp", False),
-    ("Louis François", None, False), ("Mallard Ferrière", "mallard-ferriere.png", False),
+    ("Louis François", "louis-francois.svg", False), ("Mallard Ferrière", "mallard-ferriere.png", False),
+    ("Maison Cros", "maison-cros.png", False), ("Garcia de Pou", "garcia-de-pou.svg", False), ("Glaces de Lyon", "glaces-de-lyon.webp", False),
+    ("Mutti", "mutti.webp", False), ("Fromagerie Duroux", "duroux.webp", False), ("Domaine de Mordesson", "mordesson.jpg", False),
+    ("Ovoteam", "ovoteam.svg", False), ("Destrel", None, False),
 ]
 
 PHOTOS_RACINE = {"viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp"}
@@ -126,7 +129,7 @@ FAQ_ACCUEIL = [
     ("Combien de fois par semaine livrez-vous ?", "Nous livrons plusieurs fois par semaine, en tournées fixes. Les jours de passage dépendent de votre secteur : nous consulter."),
     ("Comment passer commande ?", "Trois possibilités : par téléphone avec notre équipe de télévente, sur la boutique en ligne boutique.lva-distribution.fr (24h/24), ou sur l'application LVA Distribution (iPhone et Android). Vos tarifs personnalisés s'appliquent partout."),
     ("Quels produits proposez-vous ?", "Plus de 4 000 références : viandes et volailles, canard, crèmerie, fromages, charcuterie, boulangerie et viennoiserie, surgelés, épicerie, boissons, emballages et produits d'hygiène, ainsi que le matériel de cuisine et de pâtisserie."),
-    ("Quelles marques distribuez-vous ?", "Nous travaillons notamment avec Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Debic, Bridor, Vandemoortele, Callebaut, Andros, Jean Floc'h et Louis François, ainsi qu'avec Mallard Ferrière pour le matériel et des producteurs régionaux comme le Rocamadour AOP."),
+    ("Quelles marques distribuez-vous ?", "Nous travaillons notamment avec Rougié, Elle & Vire, Président, Isigny Sainte-Mère, Candia, Debic, Bridor, Vandemoortele, Callebaut, Andros, Jean Floc'h, Louis François, Maison Cros, Mutti, Glaces de Lyon, Ovoteam, Destrel et Garcia de Pou pour les emballages, ainsi qu'avec Mallard Ferrière pour le matériel et des producteurs de la région comme la Fromagerie Duroux et le Domaine de Mordesson (Rocamadour AOP)."),
 ]
 FAQ_LIVRAISON = [
     ("Livrez-vous chez moi ?", "Si vous êtes dans le Lot, à Brive ou en Corrèze, très probablement. Sinon, appelez-nous au 05 65 10 00 20 : nous regardons ensemble la tournée la plus proche."),
@@ -552,6 +555,7 @@ def produits():
     catalogue = {"@type": "OfferCatalog", "name": "Gammes LVA Distribution", "itemListElement": [{"@type": "OfferCatalog", "name": t, "description": tx} for t, _, tx, _ in GAMMES]}
     corps = f"""
 {tete_page(r, chemin, "Nos produits", "Plus de 4 000 références pour les professionnels", "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, épicerie, boissons, emballages et matériel : LVA Distribution réunit tout ce dont une cuisine professionnelle a besoin, livré par une seule tournée.", "fromages.webp")}
+{bande_marques(r)}
 <section class="section">
   <div class="cadre">
     <span class="surtitre">Nos gammes</span>
@@ -560,12 +564,11 @@ def produits():
     <div class="gammes">{''.join(cartes)}</div>
   </div>
 </section>
-{bande_marques(r)}
 <section class="section section-fonce">
   <div class="cadre etroit prose">
     <h2 class="titre">Des grandes marques et des produits du terroir</h2>
-    <p>LVA Distribution travaille avec les grandes marques de la restauration hors domicile : Rougié pour le canard ; Elle &amp; Vire, Président, Isigny Sainte-Mère, Candia et Debic pour la crèmerie ; Bridor et Vandemoortele pour la boulangerie ; Callebaut pour le chocolat ; Louis François pour les ingrédients de pâtisserie ; Andros pour les fruits ; Jean Floc'h pour la charcuterie ; Mallard Ferrière pour le matériel de cuisine et de pâtisserie.</p>
-    <p>Nous distribuons aussi des produits de la région, comme le Rocamadour AOP, l'un des fromages les plus demandés par les restaurants du Lot.</p>
+    <p>LVA Distribution travaille avec les grandes marques de la restauration hors domicile : Rougié pour le canard ; Elle &amp; Vire, Président, Isigny Sainte-Mère, Candia et Debic pour la crèmerie ; Bridor et Vandemoortele pour la boulangerie ; Destrel pour la viande ; Ovoteam pour les œufs ; Callebaut pour le chocolat ; Louis François pour les ingrédients de pâtisserie ; Andros pour les fruits ; Mutti pour la tomate ; Glaces de Lyon pour les glaces ; Jean Floc'h et Maison Cros pour la charcuterie ; Garcia de Pou pour les emballages ; Mallard Ferrière pour le matériel de cuisine et de pâtisserie.</p>
+    <p>Nous distribuons aussi des produits de la région, comme le Rocamadour AOP du Domaine de Mordesson, l'un des fromages les plus demandés par les restaurants du Lot, et les fromages et beurres de la Fromagerie Duroux en Corrèze.</p>
     <p>Vous ne trouvez pas une référence ? Demandez-la à votre interlocuteur ou au <a href="tel:{TEL_INT}">{TEL}</a> : nous pouvons souvent la commander pour vous.</p>
   </div>
 </section>
