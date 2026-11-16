@@ -24,6 +24,7 @@ APPLI = "https://onelink.to/w3tu83"
 APPSTORE = "https://apps.apple.com/fr/app/lva-distribution/id6754167450"
 PLAYSTORE = "https://play.google.com/store/apps/details?id=fr.lva.ecommerce"
 CATALOGUE = "https://lva-catalogue.lva-distribution.workers.dev/"
+INDEXNOW = "c5386e2de3968452de42bd86428d33bb"  # clé publique IndexNow (fichier /<clé>.txt)
 HORAIRES = "du lundi au vendredi, de 8 h à 12 h et de 14 h à 17 h"
 HORAIRES_COURT = "lun.–ven. 8 h–12 h, 14 h–17 h"
 ADRESSE = ("Z.A. Les Vieilles Vignes, Le Causse", "46500", "Rignac")
@@ -836,6 +837,9 @@ Par téléphone (télévente), sur la boutique en ligne 24h/24, ou sur l'applica
     # domaine du site (GitHub Pages)
     with open(os.path.join(SORTIE, "CNAME"), "w", encoding="utf-8", newline="\n") as f:
         f.write("www.lva-distribution.fr\n")
+    # clé IndexNow : permet de prévenir Bing (donc ChatGPT, Copilot…) à chaque mise à jour
+    with open(os.path.join(SORTIE, INDEXNOW + ".txt"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(INDEXNOW + "\n")
 
 
 def ressources():
