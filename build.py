@@ -555,7 +555,7 @@ def produits():
         cartes.append(f'<article class="gamme">{vis}<div class="corps"><h2>{e(titre)}</h2><p>{e(texte)}</p><ul>{puces}</ul></div></article>')
     catalogue = {"@type": "OfferCatalog", "name": "Gammes LVA Distribution", "itemListElement": [{"@type": "OfferCatalog", "name": t, "description": tx} for t, _, tx, _ in GAMMES]}
     corps = f"""
-{tete_page(r, chemin, "Nos produits", "Plus de 4 000 références pour les professionnels", "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, épicerie, boissons, emballages et matériel : LVA Distribution réunit tout ce dont une cuisine professionnelle a besoin, livré par une seule tournée.", "fromages.webp")}
+{tete_page(r, chemin, "Nos produits", "Plus de 4 000 références pour les professionnels", "Viandes, canard, crèmerie, fromages, charcuterie, boulangerie, surgelés, épicerie, boissons, emballages et matériel : LVA Distribution réunit tout ce dont une cuisine professionnelle a besoin, livré par une seule tournée.", "univers/hero-creme.webp")}
 {bande_marques(r)}
 <section class="section">
   <div class="cadre">
