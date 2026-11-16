@@ -117,7 +117,7 @@ GAMMES = [  # (titre, image, texte, sous-familles)
     ("Desserts et glaces", "desserts-glaces.webp", "Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.", ["Yaourts", "Fromages blancs", "Compotes", "Glaces"]),
     ("Boissons", "boissons-cafe.webp", "Jus de fruits (bouteilles et BIB), eaux, cafés, jus pour cocktails, vins et bières pour les bars, hôtels et restaurants.", ["Jus de fruits", "Eaux", "Café", "Vins", "Bières"]),
     ("Épicerie, huiles et confitures", "epicerie-confiture.webp", "Huiles, vinaigres, confitures, miels, pâtes à tartiner, gâteaux et confiseries : toute l'épicerie salée et sucrée.", ["Huiles", "Vinaigres", "Confitures", "Miels", "Confiseries"]),
-    ("Emballages et hygiène", "emballages-pizza.webp", "Barquettes, sacs, serviettes, produits d'entretien et petits matériels pour la cuisine et la salle.", ["Emballages", "Hygiène", "Fournitures"]),
+    ("Emballages et hygiène", "hygiene-entretien.webp", "Barquettes, sacs, serviettes, produits d'entretien et petits matériels pour la cuisine et la salle.", ["Emballages", "Hygiène", "Fournitures"]),
 ]
 
 FAQ_ACCUEIL = [
@@ -369,7 +369,10 @@ def bande_marques(r):
             alt = "" if cache else e(nom)
             contenu = f'<img src="{r}assets/img/marques/{f}" alt="{alt}" loading="lazy"{dimensions("marques/" + f)}>' if f else f'<span class="mot">{e(nom)}</span>'
             masque = ' aria-hidden="true"' if cache else ""
-            out.append(f'<div class="logo-marque{" sombre" if sombre else ""}"{masque}>{contenu}</div>')
+            import re as _re
+            dim = _re.findall(r"\d+", dimensions("marques/" + f)) if f else []
+            large = " large" if len(dim) == 2 and int(dim[0]) > 4 * int(dim[1]) else ""  # logo tout en longueur (nom écrit)
+            out.append(f'<div class="logo-marque{" sombre" if sombre else ""}{large}"{masque}>{contenu}</div>')
         return "".join(out)
     return f"""<section class="marques" aria-labelledby="titre-marques">
   <div class="cadre tete"><span class="surtitre">Nos marques</span><h2 class="titre" id="titre-marques">Les marques que nous distribuons</h2>
