@@ -111,7 +111,7 @@ GAMMES = [  # (titre, image, texte, sous-familles)
     ("Ingrédients boulangerie-pâtisserie", "ingredients-pistoles.webp", "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs"]),
     ("Plats cuisinés", "plats.webp", "Plats prêts à réchauffer et spécialités pour gagner du temps en service, en cantine comme en restauration rapide.", ["Plats du terroir", "Plats à partager"]),
     ("Légumes et accompagnements", "accompagnements.webp", "Légumes et herbes, champignons, féculents, sauces et préparations, en conserve, surgelés ou prêts à l'emploi.", ["Légumes et herbes", "Champignons", "Féculents", "Sauces"]),
-    ("Desserts et glaces", "desserts-flan.webp", "Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.", ["Yaourts", "Fromages blancs", "Compotes", "Glaces"]),
+    ("Desserts et glaces", "desserts-glaces.webp", "Yaourts, fromages blancs, compotes, purées de fruits et desserts glacés, en formats individuels ou restauration.", ["Yaourts", "Fromages blancs", "Compotes", "Glaces"]),
     ("Boissons", "boissons-cafe.webp", "Jus de fruits (bouteilles et BIB), eaux, cafés, jus pour cocktails, vins et bières pour les bars, hôtels et restaurants.", ["Jus de fruits", "Eaux", "Café", "Vins", "Bières"]),
     ("Épicerie, huiles et confitures", "epicerie-confiture.webp", "Huiles, vinaigres, confitures, miels, pâtes à tartiner, gâteaux et confiseries : toute l'épicerie salée et sucrée.", ["Huiles", "Vinaigres", "Confitures", "Miels", "Confiseries"]),
     ("Emballages et hygiène", "emballages-pizza.webp", "Barquettes, sacs, serviettes, produits d'entretien et petits matériels pour la cuisine et la salle.", ["Emballages", "Hygiène", "Fournitures"]),
@@ -745,7 +745,7 @@ def mentions():
 <h2 class="titre">Données personnelles et cookies</h2>
 <p>Ce site ne dépose aucun cookie. Il mesure sa fréquentation de façon anonyme (pages vues, provenance, type d'appareil, clics sur le téléphone ou la boutique), sans cookie et sans conserver d'adresse IP : un visiteur n'est reconnu que le jour même, par une empreinte non réversible renouvelée chaque jour. Le formulaire « Devenir client » n'enregistre rien : il prépare un courriel dans votre propre messagerie. Les informations que vous nous envoyez servent uniquement à vous recontacter et à ouvrir votre compte client. Vous pouvez demander leur consultation, leur rectification ou leur suppression en nous écrivant.</p>
 <h2 class="titre">Marques et photographies</h2>
-<p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026. Vidéo d'accueil : extraits des banques Pexels (licence Pexels) et Mixkit (« Stock Video Free License »), gratuites pour un usage commercial.</p>
+<p>Les marques et logos cités appartiennent à leurs propriétaires respectifs et sont présentés pour indiquer les produits que nous distribuons. Photographies : catalogue LVA Distribution 2026 et banque Pexels (licence gratuite). Vidéo d'accueil : extraits des banques Pexels (licence Pexels) et Mixkit (« Stock Video Free License »), gratuites pour un usage commercial.</p>
 </div></section>
 """
     return page("mentions-legales/index.html", "Mentions légales · LVA Distribution", "Mentions légales du site de LVA Distribution, grossiste alimentaire à Rignac (Lot).", corps, r, schemas=[ariane_ld(chemin)])
