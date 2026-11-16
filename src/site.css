@@ -331,6 +331,7 @@ svg.ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: ro
 .champs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .champ { display: flex; flex-direction: column; gap: 7px; }
 .champ.large { grid-column: 1 / -1; }
+.champ.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .champ label { font-size: 13px; font-weight: 700; color: #d6d1c8; }
 .champ input, .champ select, .champ textarea { font: inherit; font-size: 16px; color: var(--blanc); border: 1px solid #333; border-radius: 10px; padding: 12px 14px; background: var(--noir); width: 100%; }
 .champ select { color-scheme: dark; }

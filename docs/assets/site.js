@@ -169,7 +169,8 @@
 
   var an = document.getElementById('annee'); if (an) an.textContent = new Date().getFullYear();
 
-  // Formulaire « Devenir client » : prépare un courriel, rien n'est stocké
+  // Formulaire « Devenir client » : envoyé directement à l'équipe (fonction site-demande) ;
+  // si l'envoi échoue, on retombe sur la messagerie du visiteur
   var form = document.getElementById('formulaire');
   if (form) {
     var note = document.getElementById('f-note');
@@ -192,8 +193,24 @@
         'Nom : ' + v('nom'), 'Établissement : ' + v('etablissement'), 'Activité : ' + v('activite'),
         'Ville : ' + (v('commune') || 'non précisée'), 'Téléphone : ' + v('telephone'), '', v('message'), '', 'Merci de me recontacter.'].join('\n');
       if (window.lvaMesure) window.lvaMesure('formulaire');
-      window.location.href = 'mailto:lva@lva-distribution.fr?subject=' + encodeURIComponent('Demande d\'ouverture de compte : ' + v('etablissement')) + '&body=' + encodeURIComponent(corps);
-      note.textContent = 'Votre messagerie s\'ouvre avec la demande prête : il ne reste qu\'à l\'envoyer. Rien ne s\'ouvre ? Appelez le 05 65 10 00 20.';
+      var bouton = form.querySelector('button[type="submit"]');
+      var parMessagerie = function () {
+        window.location.href = 'mailto:lva@lva-distribution.fr?subject=' + encodeURIComponent('Demande d\'ouverture de compte : ' + v('etablissement')) + '&body=' + encodeURIComponent(corps);
+        note.textContent = 'L\'envoi direct n\'a pas abouti : votre messagerie s\'ouvre avec la demande prête, il ne reste qu\'à l\'envoyer. Rien ne s\'ouvre ? Appelez le 05 65 10 00 20.';
+        bouton.disabled = false;
+      };
+      bouton.disabled = true;
+      note.textContent = 'Envoi en cours…';
+      fetch('https://axnysfiklmtfpterawgm.supabase.co/functions/v1/site-demande', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nom: v('nom'), etablissement: v('etablissement'), telephone: v('telephone'), courriel: v('courriel'),
+          ville: v('commune'), activite: v('activite'), message: v('message'), site_web: v('site_web') })
+      }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (rep) {
+        if (!rep || !rep.ok) return parMessagerie();
+        form.querySelectorAll('input, select, textarea').forEach(function (c) { c.disabled = true; });
+        bouton.innerHTML = 'Demande envoyée ✓';
+        note.textContent = 'Merci, votre demande est bien arrivée. Un commercial vous rappelle très vite. Pour une urgence : 05 65 10 00 20.';
+      }).catch(parMessagerie);
     });
   }
 
