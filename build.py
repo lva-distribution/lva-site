@@ -109,9 +109,9 @@ MARQUES = [  # (nom, fichier logo ou None, fond sombre)
 PHOTOS_RACINE = {"viandes.webp", "fromages.webp", "charcuteries.webp", "boulangerie.webp", "bandeau-droite.webp"}
 GAMMES = [  # (titre, image, texte, sous-familles)
     ("Viandes et volailles", "viandes.webp", "Bœuf, veau, agneau, porc et volailles, en pièces, portions ou prêts à cuisiner, frais ou surgelés. Les steaks hachés façon bouchère et les volailles font partie de nos meilleures ventes.", ["Bœuf", "Veau", "Agneau", "Porc", "Poulet", "Dinde", "Volailles découpées"]),
-    ("Canard", "bandeau-droite.webp", "Le canard est notre premier rayon : confits, magrets, cuisses, manchons et gésiers, dont la gamme Rougié. Un incontournable des cartes du Lot et du Périgord.", ["Confits", "Magrets", "Cuisses", "Manchons", "Gésiers"]),
+    ("Canard", "canard.webp", "Le canard est notre premier rayon : confits, magrets, cuisses, manchons et gésiers, dont la gamme Rougié. Un incontournable des cartes du Lot et du Périgord.", ["Confits", "Magrets", "Cuisses", "Manchons", "Gésiers"]),
     ("Crèmerie et laits", "cremerie.webp", "Beurres de cuisine, beurres pâtissiers AOP et de tourage, beurres en portions, crèmes UHT et crèmes fraîches, laits et œufs (coquille, liquides).", ["Beurres de cuisine", "Beurres pâtissiers", "Beurres portions", "Crèmes", "Laits", "Œufs"]),
-    ("Fromages", "fromages.webp", "Fromages à la coupe, en portions, râpés et tranchés, dont le Rocamadour AOP et les grands classiques pour la cuisine, le plateau et la pizza.", ["À la coupe", "Portions", "Râpés", "Tranchés", "Rocamadour AOP"]),
+    ("Fromages", "fromages-plateau.webp", "Fromages à la coupe, en portions, râpés et tranchés, dont le Rocamadour AOP et les grands classiques pour la cuisine, le plateau et la pizza.", ["À la coupe", "Portions", "Râpés", "Tranchés", "Rocamadour AOP"]),
     ("Charcuteries", "charcuteries.webp", "Jambons, lards, saucissons et spécialités, tranchés ou à la coupe, pour la cuisine, le snacking et les planches.", ["Charcuterie tranchée", "Charcuterie à la coupe", "Saucisses"]),
     ("Boulangerie et viennoiserie", "boulangerie.webp", "Pains précuits, viennoiseries crues ou cuites, pâtes feuilletées et prêts à garnir, avec des marques comme Bridor et Vandemoortele.", ["Pains", "Viennoiseries", "Pâtes feuilletées", "Prêts à garnir"]),
     ("Ingrédients boulangerie-pâtisserie", "ingredients-pistoles.webp", "Sucres, levures, chocolats de couverture, arômes, purées de fruits et fruits secs pour les boulangers, pâtissiers et cuisiniers, ainsi que les gélatines, pectines et texturants Louis François.", ["Sucres et sels", "Épices", "Chocolat", "Fruits secs", "Gélatines et pectines"]),
@@ -488,10 +488,10 @@ def accueil(variante="video"):
     <p class="chapo">Du frais au surgelé, de l'épicerie aux emballages : une seule commande, une seule livraison. Le frais est notre cœur de métier.</p>
     <div class="mosaique">
       <figure class="tuile"><img src="{r}assets/img/viandes.webp" alt="Pièces de bœuf grillées sur une ardoise" loading="lazy" width="700" height="700"><figcaption><b>Viandes</b><span>Bœuf, veau, agneau, porc, volaille</span></figcaption></figure>
-      <figure class="tuile"><img src="{r}assets/img/fromages.webp" alt="Plateau de fromages et verre de vin rouge" loading="lazy" width="700" height="700"><figcaption><b>Fromages</b><span>Coupe, portions, râpés, Rocamadour AOP</span></figcaption></figure>
+      <figure class="tuile"><img src="{r}assets/img/univers/fromages-plateau.webp" alt="Assortiment de fromages à la coupe sur une ardoise" loading="lazy" width="1200" height="800"><figcaption><b>Fromages</b><span>Coupe, portions, râpés, Rocamadour AOP</span></figcaption></figure>
       <figure class="tuile"><img src="{r}assets/img/charcuteries.webp" alt="Tranches de jambon et de lard sur une planche" loading="lazy" width="700" height="700"><figcaption><b>Charcuteries</b><span>Tranchées et à la coupe</span></figcaption></figure>
       <figure class="tuile"><img src="{r}assets/img/boulangerie.webp" alt="Croissants dorés sur une plaque" loading="lazy" width="540" height="465"><figcaption><b>Boulangerie</b><span>Pains, viennoiseries, prêts à garnir</span></figcaption></figure>
-      <figure class="tuile"><img src="{r}assets/img/bandeau-droite.webp" alt="Magret de canard tranché et grains de poivre" loading="lazy" width="378" height="1350" style="object-position:50% 70%"><figcaption><b>Canard</b><span>Magrets, cuisses, confits</span></figcaption></figure>
+      <figure class="tuile"><img src="{r}assets/img/univers/canard.webp" alt="Cuisse de canard confite sur une ardoise" loading="lazy" width="911" height="607"><figcaption><b>Canard</b><span>Magrets, cuisses, confits</span></figcaption></figure>
     </div>
     <div class="pied-section">
       <a class="btn btn-rouge" href="{r}produits/">Voir toutes nos gammes <svg class="ic"><use href="#i-fleche"/></svg></a>
