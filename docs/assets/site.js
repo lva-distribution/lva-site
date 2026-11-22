@@ -216,7 +216,10 @@
 
   // Mesure de fréquentation : sans cookie, sans adresse IP conservée (voir mentions légales)
   (function () {
-    var API = 'https://axnysfiklmtfpterawgm.supabase.co/rest/v1/rpc/site_visite';
+    var API = 'https://axnysfiklmtfpterawgm.supabase.co/rest/v1/rpc/site_visite_geo';
+    // Ville approximative du visiteur (déduite par Cloudflare, l'adresse IP n'est ni renvoyée ni gardée) :
+    // sert à compter les visiteurs locaux (60 km autour du dépôt) dans le tableau de bord de LVA.
+    var GEO = 'https://lva-televente.lva-distribution.workers.dev/geo';
     var CLE = 'sb_publishable_xhAnr45DL5VdMaDotuelcQ_WM6-QxMC';
     var off = false; try { off = localStorage.getItem('lva-stats-off') === '1'; } catch (e) {}
     var h = location.hostname;
@@ -231,11 +234,26 @@
       if (q.get('utm_source')) source = q.get('utm_source');
       else if (document.referrer) { var r = new URL(document.referrer).hostname.replace(/^www\./, ''); if (r && r !== h.replace(/^www\./, '')) source = r; }
     } catch (e) {}
-    function envoyer(evenement) {
+    var geo = null;
+    try { geo = JSON.parse(sessionStorage.getItem('lva-geo') || 'null'); } catch (e) {}
+    var geoPret = geo ? Promise.resolve(geo) : new Promise(function (ok) {
+      var fini = false, fin = function (g) { if (!fini) { fini = true; geo = g || {}; ok(geo); } };
+      setTimeout(function () { fin({}); }, 1500);
       try {
-        fetch(API, { method: 'POST', keepalive: true, headers: { 'apikey': CLE, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ p_page: page, p_source: source, p_appareil: appareil, p_evenement: evenement }) }).catch(function () {});
-      } catch (e) {}
+        fetch(GEO, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (g) {
+          try { sessionStorage.setItem('lva-geo', JSON.stringify(g)); } catch (e) {}
+          fin(g);
+        }).catch(function () { fin({}); });
+      } catch (e) { fin({}); }
+    });
+    function envoyer(evenement) {
+      geoPret.then(function (g) {
+        try {
+          fetch(API, { method: 'POST', keepalive: true, headers: { 'apikey': CLE, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ p_page: page, p_source: source, p_appareil: appareil, p_evenement: evenement,
+              p_ville: g.ville || null, p_region: g.region || null, p_lat: g.lat == null ? null : g.lat, p_lon: g.lon == null ? null : g.lon }) }).catch(function () {});
+        } catch (e) {}
+      });
     }
     envoyer('vue');
     document.addEventListener('click', function (e) {

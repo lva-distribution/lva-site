@@ -62,6 +62,8 @@
       '<div class="stats-grille">' +
       tableau('Pages les plus vues', (d.pages || []).map(function (p) { return { n: NOMS_PAGES[p.page] || p.page, v: p.vues }; }), 'Page', 'Vues') +
       tableau('D\'où viennent les visiteurs', (d.sources || []).map(function (p) { return { n: p.source === 'direct' ? 'Accès direct (lien tapé, favori, QR…)' : p.source, v: p.visiteurs }; }), 'Provenance', 'Visiteurs') +
+      tableau('Visiteurs locaux ou non', (d.zones || []).map(function (p) { return { n: { local: 'Local (' + (d.rayon_km || 60) + ' km ou moins du dépôt)', france: 'Ailleurs en France', incertain: 'Lieu incertain (téléphone en 4G/5G vu dans une grande ville)', etranger: 'Étranger (surtout des robots)', inconnu: 'Inconnu' }[p.zone] || p.zone, v: p.visiteurs }; }), 'Provenance', 'Visiteurs') +
+      tableau('Villes des visiteurs (approximatif)', (d.villes || []).map(function (p) { return { n: p.ville, v: p.visiteurs }; }), 'Ville', 'Visiteurs') +
       tableau('Appareils', (d.appareils || []).map(function (p) { return { n: { mobile: 'Téléphone', tablette: 'Tablette', ordinateur: 'Ordinateur' }[p.appareil] || p.appareil, v: p.visiteurs }; }), 'Appareil', 'Visiteurs') +
       tableau('Actions des visiteurs', (d.evenements || []).map(function (p) { return { n: NOMS_EVT[p.evenement] || p.evenement, v: p.nombre }; }), 'Action', 'Nombre') +
       '</div>';
